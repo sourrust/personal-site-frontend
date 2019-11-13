@@ -3,8 +3,6 @@
 const nodemailer = require('nodemailer');
 const isEmpty    = require('lodash/isEmpty');
 
-require('dotenv').config();
-
 function getTestConfiguration() {
     const authorization = {
         user: 'austin30@ethereal.email',
@@ -20,7 +18,7 @@ function getTestConfiguration() {
 
 function getConfiguration() {
     const authorization = {
-        user: process.env.GMAIL_USERNAME
+        user: process.env.GMAIL_USERNAME,
         pass: process.env.GMAIL_PASSWORD
     };
 
