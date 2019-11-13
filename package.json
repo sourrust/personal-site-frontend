@@ -1,0 +1,43 @@
+{
+  "name": "personal-site-frontend",
+  "version": "0.1.0",
+  "description": "My personal landing page",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node server.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node server.js",
+    "lint": "eslint **.js{,x}"
+  },
+  "author": "Jeremy Hull <sourdurms@gmail.com>",
+  "license": "BSD-3-Clause",
+  "dependencies": {
+    "@zeit/next-sass": "^1.0.1",
+    "axios": "^0.19.0",
+    "body-parser": "^1.19.0",
+    "bookshelf": "^1.0.1",
+    "bulma": "^0.7.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "knex": "^0.20.1",
+    "lodash": "^4.17.15",
+    "mysql": "^2.17.1",
+    "next": "^9.0.5",
+    "node-sass": "^4.12.0",
+    "nodemailer": "^6.3.0",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "sqlite": "^3.0.3"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.3",
+    "eslint": "^5.16.0",
+    "eslint-cli": "^1.1.1",
+    "eslint-config-airbnb": "^17.1.1",
+    "eslint-config-react-app": "^3.0.0",
+    "eslint-plugin-flowtype": "^3.13.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.14.3"
+  }
+}
