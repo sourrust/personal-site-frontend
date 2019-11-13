@@ -1,6 +1,5 @@
 import React      from 'react';
 import AboutMe    from '../components/AboutMe';
-import Companies  from '../components/Companies';
 import Contact    from '../components/Contact';
 import Detail     from '../components/detail';
 import Footer     from '../components/Footer';
