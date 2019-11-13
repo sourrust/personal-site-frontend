@@ -18,3 +18,14 @@
 @import "bulma/sass/components/modal";
 @import "bulma/sass/components/navbar";
 @import "bulma/sass/grid/columns";
+
+@import "./internal/utility";
+@import "./internal/icon";
+@import "./internal/notification";
+@import "./internal/navigation";
+@import "./internal/hero";
+@import "./internal/project";
+@import "./internal/resume";
+@import "./internal/information";
+@import "./internal/contact";
+@import "./internal/footer";

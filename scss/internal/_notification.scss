@@ -1,0 +1,10 @@
+.notification {
+    position: absolute;
+    right: 1.5rem;
+    bottom: -7rem;
+    z-index: 40;
+
+    transition: bottom 0.35s ease;
+
+    &.is-active { bottom: 0 }
+}

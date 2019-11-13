@@ -1,0 +1,9 @@
+$main-color: #689f38;
+$secondary-color: darken($main-color, 2.5%);
+
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
