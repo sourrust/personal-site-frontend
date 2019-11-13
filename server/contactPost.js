@@ -3,8 +3,6 @@
 const nodemailer = require('nodemailer');
 const isEmpty    = require('lodash/isEmpty');
 
-require('dotenv').config();
-
 function getTestConfiguration() {
     const authorization = {
         user: 'austin30@ethereal.email',
