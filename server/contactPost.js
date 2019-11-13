@@ -20,7 +20,7 @@ function getTestConfiguration() {
 
 function getConfiguration() {
     const authorization = {
-        user: process.env.GMAIL_USERNAME
+        user: process.env.GMAIL_USERNAME,
         pass: process.env.GMAIL_PASSWORD
     };
 
