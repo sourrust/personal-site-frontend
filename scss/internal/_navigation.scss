@@ -1,0 +1,45 @@
+.navbar { background-color: $main-color }
+
+.is-hidden-touch > a {
+    display: inline-flex;
+}
+
+a.navbar-item {
+    color: $white-ter;
+
+    svg { font-size: 1.5em }
+
+    &:hover {
+        background-color: $secondary-color;
+        color: darken($white-ter, 5%);
+    }
+
+    &:focus {
+        background-color: $main-color;
+        color: $white-ter;
+    }
+}
+
+.navbar-menu.is-active {
+    background-color: $secondary-color;
+}
+
+.navbar-end .is-hidden-touch {
+    display: flex;
+
+    & > a.navbar-item {
+        display: inline-flex;
+        align-items: center;
+    }
+}
+
+.navbar-end .is-hidden-desktop.navbar-item {
+    padding: 0;
+
+    a.item {
+        color: $white-ter;
+
+        width: 3rem;
+        display: inline-block;
+    }
+}

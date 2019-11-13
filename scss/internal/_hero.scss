@@ -1,0 +1,28 @@
+.hero.summary {
+    background-color: $main-color;
+    color: $white-ter;
+
+    .content { align-self: center }
+
+    .title { color: $white-ter }
+    .subtitle { color: rgba($white-ter, 0.9) }
+
+    .hero-body .columns { flex: 1 }
+}
+
+.subtitle-list {
+    position: relative;
+
+    .subtitle-list-item {
+        position: absolute;
+        margin: auto 0;
+        left: 0;
+        right: 0;
+
+        opacity: 0;
+
+        transition: opacity 0.75s ease;
+
+        &.is-active { opacity: 1 }
+    }
+}

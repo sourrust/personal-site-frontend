@@ -1,0 +1,20 @@
+#contact,
+.footer {
+    background-color: $secondary-color;
+}
+
+.footer {
+    padding: 0 1.5rem 1.5rem;
+
+    .social-link {
+        font-size: 1.5rem;
+        padding: 0.5rem;
+    }
+
+    a {
+        color: $black;
+        font-weight: 500;
+
+        &:hover { color: $blue }
+    }
+}

@@ -1,0 +1,29 @@
+.information {
+    background-color: $main-color;
+    padding: $size-2 0;
+}
+
+.card { border-radius: $radius-small }
+
+#about-cards {
+    .card {
+        p { margin-bottom: 0 }
+
+        .card-content { display: none }
+
+        &.is-active {
+            margin: 0.5rem 0;
+
+            .card-content { display: block }
+        }
+    }
+
+    .card-header-title { cursor: pointer }
+}
+
+.show-less {
+    max-height: 180px;
+    -webkit-mask-image: linear-gradient(180deg, #000 60%, transparent);
+            mask-image: linear-gradient(180deg, #000 60%, transparent);
+    overflow: hidden;
+}
