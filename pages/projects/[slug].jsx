@@ -34,13 +34,30 @@ function ProjectLink({ url }) {
     );
 }
 
+function isAnchorTag(node) {
+    return node.type === 'tag' && node.name === 'a';
+}
+
+function handleAnchorTagReplace(node) {
+    if (!isAnchorTag(node)) {
+        return node;
+    }
+
+    node.attribs = extend({}, node.attribs, {
+        rel: 'noopener noreferrer',
+        target: '__blank'
+    });
+
+    return node;
+}
+
 function ProjectDescription({ description }) {
     if (isNil(description)) {
         return null;
     }
 
     const html    = marked(description);
-    const content = htmlParser(html);
+    const content = htmlParser(html, { replace: handleAnchorTagReplace });
 
     return (
         <React.Fragment>
