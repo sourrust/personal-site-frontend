@@ -38,9 +38,9 @@ function Project({ project }) {
                 { project.name }
                 <ProjectLink url={ project.url } />
             </h2>
-            <p>
-                <em>{ project.summary }</em>
-            </p>
+            <blockquote className="summary">
+                { project.summary }
+            </blockquote>
         </div>
     );
 }
