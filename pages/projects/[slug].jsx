@@ -1,8 +1,11 @@
 import React      from 'react';
 import Head       from 'next/head';
-import map        from 'lodash/map';
+import extend     from 'lodash/extend';
+import htmlParser from 'html-react-parser';
 import isEmpty    from 'lodash/isEmpty';
 import isNil      from 'lodash/isNil';
+import map        from 'lodash/map';
+import marked     from 'marked';
 import Contact    from '../../components/Contact';
 import Error      from '../_error';
 import Footer     from '../../components/Footer';
@@ -31,6 +34,21 @@ function ProjectLink({ url }) {
     );
 }
 
+function ProjectDescription({ description }) {
+    if (isNil(description)) {
+        return null;
+    }
+
+    const html    = marked(description);
+    const content = htmlParser(html);
+
+    return (
+        <React.Fragment>
+            { content }
+        </React.Fragment>
+    )
+}
+
 function Project({ project }) {
     return (
         <div id={ project.slug } className="content project">
@@ -41,6 +59,7 @@ function Project({ project }) {
             <blockquote className="summary">
                 { project.summary }
             </blockquote>
+            <ProjectDescription description={ project.description } />
         </div>
     );
 }
