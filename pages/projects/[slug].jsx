@@ -1,18 +1,16 @@
 import React      from 'react';
 import Head       from 'next/head';
-import extend     from 'lodash/extend';
-import htmlParser from 'html-react-parser';
 import isEmpty    from 'lodash/isEmpty';
 import isNil      from 'lodash/isNil';
 import map        from 'lodash/map';
-import marked     from 'marked';
 import Contact    from '../../components/Contact';
 import Error      from '../_error';
 import Footer     from '../../components/Footer';
 import Link       from '../../components/icons/Link';
 import Navigation from '../../components/Navigation';
 import Resume     from '../../components/Resume';
-import fetchAPI   from '../../utility/fetchAPI';
+
+import { fetchAPI, markdownToReact } from '../../utility';
 
 function ProjectLink({ url }) {
     if (isEmpty(url)) {
@@ -34,30 +32,12 @@ function ProjectLink({ url }) {
     );
 }
 
-function isAnchorTag(node) {
-    return node.type === 'tag' && node.name === 'a';
-}
-
-function handleAnchorTagReplace(node) {
-    if (!isAnchorTag(node)) {
-        return node;
-    }
-
-    node.attribs = extend({}, node.attribs, {
-        rel: 'noopener noreferrer',
-        target: '__blank'
-    });
-
-    return node;
-}
-
 function ProjectDescription({ description }) {
     if (isNil(description)) {
         return null;
     }
 
-    const html    = marked(description);
-    const content = htmlParser(html, { replace: handleAnchorTagReplace });
+    const content = markdownToReact(description);
 
     return (
         <React.Fragment>
