@@ -13,7 +13,7 @@ function handleAnchorTagReplace(node) {
 
     node.attribs = extend({}, node.attribs, {
         rel: 'noopener noreferrer',
-        target: '__blank'
+        target: '_blank'
     });
 
     return node;
