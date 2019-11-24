@@ -32,6 +32,18 @@ function ProjectLink({ url }) {
     );
 }
 
+function ProjectSummary({ summary }) {
+    if (isEmpty(summary)) {
+        return null;
+    }
+
+    return (
+        <blockquote className="summary">
+            { summary }
+        </blockquote>
+    );
+}
+
 function ProjectDescription({ description }) {
     if (isNil(description)) {
         return null;
@@ -53,9 +65,7 @@ function Project({ project }) {
                 { project.name }
                 <ProjectLink url={ project.url } />
             </h2>
-            <blockquote className="summary">
-                { project.summary }
-            </blockquote>
+            <ProjectSummary summary={ project.summary } />
             <ProjectDescription description={ project.description } />
         </div>
     );
