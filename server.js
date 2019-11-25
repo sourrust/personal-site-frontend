@@ -5,6 +5,7 @@ require('dotenv').config();
 const bodyParser = require('body-parser');
 const express    = require('express');
 const next       = require('next');
+const extend     = require('lodash/extend');
 
 const contactPost      = require('./server/contactPost');
 const serverPublicFile = require('./server/serverPublicFile');
@@ -12,8 +13,28 @@ const serverPublicFile = require('./server/serverPublicFile');
 const port  = parseInt(process.env.PORT || '3000', 10);
 const isDev = process.env.NODE_ENV !== 'production';
 
-const application    = next({ dev: isDev });
-const defaultHandler = application.getRequestHandler();
+const application = next({ dev: isDev });
+const nextHandler = application.getRequestHandler();
+
+function createParameterHandler(page) {
+    return function parameterHandler(request, response) {
+        const query = extend({}, request.query, request.params);
+
+        return application.render(request, response, page, query);
+    }
+}
+
+function requestHandler(request, response) {
+    const { path, query } = request;
+
+    return application.render(request, response, path, query);
+}
+
+function defaultHandler(request, response) {
+    const { path, query } = request;
+
+    return nextHandler(request, response, path, query);
+}
 
 async function startServer() {
     const server = express();
@@ -29,6 +50,10 @@ async function startServer() {
         '/robots.txt',
         serverPublicFile('robots.txt', 'text/plain', 3600)
     );
+
+    server.get('/', requestHandler);
+    server.get('/projects', requestHandler);
+    server.get('/projects/:slug', createParameterHandler('/projects/[slug]'));
 
     server.all('*', defaultHandler);
 
