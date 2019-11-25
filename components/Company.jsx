@@ -3,15 +3,16 @@ import Link  from 'next/link';
 import isNil from 'lodash/isNil';
 
 function Company({ company, element, size }) {
-    const href = isNil(company.slug)
-        ? '/projects'
-        : `/projects/${company.slug}`;
+    const hasNoSlug = isNil(company.slug);
+
+    const href   = hasNoSlug ? '/projects' : '/projects/[slug]';
+    const asHref = hasNoSlug ? null : `/projects/${company.slug}`;
 
     const className = `company column is-${size}`;
     const subtitle  = company.subtitle || `${company.project_count} Projects`;
 
     return (
-        <Link href={ href }>
+        <Link href={ href } as={ asHref }>
             <a className={ className }>
                 { element }
                 <h4 className="title">{ company.name }</h4>
