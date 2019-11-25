@@ -15,27 +15,36 @@ const isDev = process.env.NODE_ENV !== 'production';
 const application    = next({ dev: isDev });
 const defaultHandler = application.getRequestHandler();
 
-application.prepare()
-  .then(function() {
-      const server = express();
+async function startServer() {
+    const server = express();
 
-      server.use(bodyParser.json());
-      server.use(bodyParser.urlencoded({ extended: true }));
+    await application.prepare();
 
-      server.post('/contact', contactPost);
+    server.use(bodyParser.json());
+    server.use(bodyParser.urlencoded({ extended: true }));
 
-      server.get(
-          '/robots.txt',
-          serverPublicFile('robots.txt', 'text/plain', 3600)
-      );
+    server.post('/contact', contactPost);
 
-      server.all('*', defaultHandler);
+    server.get(
+        '/robots.txt',
+        serverPublicFile('robots.txt', 'text/plain', 3600)
+    );
 
-      server.listen(port, function(error) {
-          if (error) {
-              throw error;
-          }
+    server.all('*', defaultHandler);
 
-          console.log(`> Ready on http://localhost:${port}`);
-      });
-  });
+    server.listen(port, function(error) {
+        if (error) {
+            throw error;
+        }
+
+        console.log(`> Ready on http://localhost:${port}`);
+    });
+}
+
+function handleError(error) {
+    console.error(error);
+
+    process.exit(1);
+}
+
+startServer().catch(handleError);
