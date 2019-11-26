@@ -31,7 +31,7 @@ class BaseDocument extends Document {
                     <meta
                         name="viewport"
                         content="width=device-width, initial-scale=1" />
-                    <meta name="description" content="A software engineer, raised in the open source community who, loves to build systems that solves interesting problems." />
+                    <meta name="description" content="A software engineer, raised in the open source community, who loves to build systems that solves interesting problems." />
                     <link
                         rel="shortcut icon"
                         href="//splash.nyc3.cdn.digitaloceanspaces.com/personal-site/icons/icon.ico"
@@ -74,8 +74,6 @@ class BaseDocument extends Document {
                     <meta name="twitter:title" content="Jeremy Hull" />
                     <meta name="twitter:description" content="A software engineer, raised in the open source community who, loves to build systems that solves interesting problems." />
                     <meta name="twitter:url" content="https://jeremy-hull.com/" />
-                    <meta />
-                    <meta />
                 </Head>
                 <body>
                     <Main />
