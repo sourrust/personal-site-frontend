@@ -1,0 +1,15 @@
+.company {
+    color: $text;
+    text-align: center;
+
+    &:hover { background-color: $white-ter }
+}
+
+.company.is-3 { font-size: 10rem }
+
+.company.is-2 {
+    font-size: 5rem;
+
+    .title { font-size: 1.25rem }
+    .subtitle { font-size: 1rem }
+}

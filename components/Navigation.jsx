@@ -51,7 +51,7 @@ function Navigation() {
                             Home
                         </a>
                     </Link>
-                    <Link href="#projects">
+                    <Link href="/projects">
                         <a className="navbar-item">
                             Projects
                         </a>

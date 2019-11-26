@@ -5,37 +5,103 @@ require('dotenv').config();
 const bodyParser = require('body-parser');
 const express    = require('express');
 const next       = require('next');
+const extend     = require('lodash/extend');
 
-const contactPost      = require('./server/contactPost');
-const serverPublicFile = require('./server/serverPublicFile');
+const cacheableResponse = require('cacheable-response');
+
+const asMilliseconds  = require('./server/utility/asMilliseconds');
+const contactPost     = require('./server/contactPost');
+const servePublicFile = require('./server/servePublicFile');
 
 const port  = parseInt(process.env.PORT || '3000', 10);
 const isDev = process.env.NODE_ENV !== 'production';
 
-const application    = next({ dev: isDev });
-const defaultHandler = application.getRequestHandler();
+const application = next({ dev: isDev });
+const nextHandler = application.getRequestHandler();
 
-application.prepare()
-  .then(function() {
-      const server = express();
+const cacheManager = cacheableResponse({
+    ttl: asMilliseconds(6, 'hours'),
+    get: async function getData({ req, res, path, query }) {
+        const data = await application.renderToHTML(req, res, path, query);
 
-      server.use(bodyParser.json());
-      server.use(bodyParser.urlencoded({ extended: true }));
+        return { data };
+    },
+    send: ({ data, res }) => res.send(data)
+});
 
-      server.post('/contact', contactPost);
+function createParameterHandler(path) {
+    return function parameterHandler(request, response) {
+        const query = extend({}, request.query, request.params);
 
-      server.get(
-          '/robots.txt',
-          serverPublicFile('robots.txt', 'text/plain', 3600)
-      );
+        if (isDev || query['no-cache']) {
+            return application.render(request, response, path, query);
+        }
 
-      server.all('*', defaultHandler);
+        return cacheManager({
+            req: request,
+            res: response,
+            path: path,
+            query: query
+        });
+    }
+}
 
-      server.listen(port, function(error) {
-          if (error) {
-              throw error;
-          }
+function requestHandler(request, response) {
+    const { path, query } = request;
 
-          console.log(`> Ready on http://localhost:${port}`);
-      });
-  });
+    if (isDev || query['no-cache']) {
+        return application.render(request, response, path, query);
+    }
+
+    return cacheManager({
+        req: request,
+        res: response,
+        path: path,
+        query: query
+    });
+}
+
+function defaultHandler(request, response) {
+    const { path, query } = request;
+
+    return nextHandler(request, response, path, query);
+}
+
+async function startServer() {
+    const server = express();
+
+    await application.prepare();
+
+    server.set('x-powered-by', false);
+    server.use(bodyParser.json());
+    server.use(bodyParser.urlencoded({ extended: true }));
+
+    server.post('/contact', contactPost);
+
+    server.get(
+        '/robots.txt',
+        servePublicFile('robots.txt', 'text/plain')
+    );
+
+    server.get('/', requestHandler);
+    server.get('/projects', requestHandler);
+    server.get('/projects/:slug', createParameterHandler('/projects/[slug]'));
+
+    server.all('*', defaultHandler);
+
+    server.listen(port, function(error) {
+        if (error) {
+            throw error;
+        }
+
+        console.log(`> Ready on http://localhost:${port}`);
+    });
+}
+
+function handleError(error) {
+    console.error(error);
+
+    process.exit(1);
+}
+
+startServer().catch(handleError);
