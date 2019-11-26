@@ -39,7 +39,7 @@ const cacheManager = cacheableResponse({
     }
 });
 
-function serverPublicFile(file, type) {
+function servePublicFile(file, type) {
     const filePath = path.join('public', file);
 
     return async function handler(request, response) {
@@ -60,4 +60,4 @@ function serverPublicFile(file, type) {
     };
 }
 
-module.exports = serverPublicFile;
+module.exports = servePublicFile;
