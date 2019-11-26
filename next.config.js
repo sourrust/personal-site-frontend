@@ -10,6 +10,7 @@ const baseUrl = isDevelopment
   : 'https://cms.jeremy-hull.com';
 
 module.exports = withSass({
+    poweredByHeader: false,
     env: {
         GOOGLE_ANALYTICS_ID: process.env.GOOGLE_ANALYTICS_ID,
         BASE_CMS_URL: baseUrl

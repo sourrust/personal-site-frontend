@@ -72,6 +72,7 @@ async function startServer() {
 
     await application.prepare();
 
+    server.set('x-powered-by', false);
     server.use(bodyParser.json());
     server.use(bodyParser.urlencoded({ extended: true }));
 
