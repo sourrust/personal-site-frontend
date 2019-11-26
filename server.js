@@ -80,7 +80,7 @@ async function startServer() {
 
     server.get(
         '/robots.txt',
-        serverPublicFile('robots.txt', 'text/plain', 3600)
+        serverPublicFile('robots.txt', 'text/plain')
     );
 
     server.get('/', requestHandler);

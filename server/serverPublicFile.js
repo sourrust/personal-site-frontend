@@ -5,37 +5,57 @@ const fs      = require('fs');
 const isEmpty = require('lodash/isEmpty');
 const path    = require('path');
 
-function serverPublicFile(file, type, maxAge) {
-    const cache = {};
+const cacheableResponse = require('cacheable-response');
+const asMilliseconds    = require('./utility/asMilliseconds');
 
-    const filePath = path.join('public', file);
+const isDev = process.env.NODE_ENV !== 'production';
 
-    return function handler(request, response, next) {
-        if (!isEmpty(cache)) {
-            response.writeHead(200, cache.headers);
-            response.end(cache.payload);
-
-            return;
-        }
-
-        fs.readFile(filePath, function(error, buffer) {
+function readFile(filePath, encoding) {
+    return new Promise(function readFileHandler(resolve, reject) {
+        fs.readFile(filePath, encoding, function(error, content) {
             if (error) {
-                return next(error);
+                return reject(error);
             }
 
-            const content = buffer.toString();
-            const etag    = crypto.createHash('md5').update(content, 'utf8');
+            resolve(content);
+        });
+    });
+}
 
-            cache.payload = content;
-            cache.headers = {
-                'Content-Type': type,
-                'Content-Length': Buffer.from(content).length,
-                'ETag': `"${etag.digest('hex')}"`,
-                'Cache-Control': `public, max-age=${maxAge}`
-            };
+const cacheManager = cacheableResponse({
+    ttl: asMilliseconds(30, 'days'),
+    get: async function getData({ req, res, path, type }) {
+        const data = {
+            type: type,
+            content: await readFile(path, 'utf8')
+        };
 
-            response.writeHead(200, cache.headers);
-            response.end(cache.payload);
+        return { data };
+    },
+    send: function sendData({ data, res }) {
+        res.set('Content-Type', data.type);
+
+        res.send(data.content);
+    }
+});
+
+function serverPublicFile(file, type) {
+    const filePath = path.join('public', file);
+
+    return async function handler(request, response) {
+        if (isDev || request.query['no-cache']) {
+            const data = await readFile(filePath, 'utf8');
+
+            response.set('Content-Type', type);
+
+            return response.send(data);
+        }
+
+        return cacheManager({
+            req: request,
+            res: response,
+            path: filePath,
+            type: type
         });
     };
 }
