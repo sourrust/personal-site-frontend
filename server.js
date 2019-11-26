@@ -7,6 +7,9 @@ const express    = require('express');
 const next       = require('next');
 const extend     = require('lodash/extend');
 
+const cacheableResponse = require('cacheable-response');
+
+const asMilliseconds   = require('./server/utility/asMilliseconds');
 const contactPost      = require('./server/contactPost');
 const serverPublicFile = require('./server/serverPublicFile');
 
@@ -16,18 +19,46 @@ const isDev = process.env.NODE_ENV !== 'production';
 const application = next({ dev: isDev });
 const nextHandler = application.getRequestHandler();
 
-function createParameterHandler(page) {
+const nextCacheManager = cacheableResponse({
+    ttl: asMilliseconds(6, 'hours'),
+    get: async function getData({ req, res, path, query }) {
+        const data = await application.renderToHTML(req, res, path, query);
+
+        return { data };
+    },
+    send: ({ data, res }) => res.send(data)
+});
+
+function createParameterHandler(path) {
     return function parameterHandler(request, response) {
         const query = extend({}, request.query, request.params);
 
-        return application.render(request, response, page, query);
+        if (isDev || query['no-cache']) {
+            return application.render(request, response, path, query);
+        }
+
+        return nextCacheManager({
+            req: request,
+            res: response,
+            path: path,
+            query: query
+        });
     }
 }
 
 function requestHandler(request, response) {
     const { path, query } = request;
 
-    return application.render(request, response, path, query);
+    if (isDev || query['no-cache']) {
+        return application.render(request, response, path, query);
+    }
+
+    return nextCacheManager({
+        req: request,
+        res: response,
+        path: path,
+        query: query
+    });
 }
 
 function defaultHandler(request, response) {
