@@ -19,7 +19,7 @@ const isDev = process.env.NODE_ENV !== 'production';
 const application = next({ dev: isDev });
 const nextHandler = application.getRequestHandler();
 
-const nextCacheManager = cacheableResponse({
+const cacheManager = cacheableResponse({
     ttl: asMilliseconds(6, 'hours'),
     get: async function getData({ req, res, path, query }) {
         const data = await application.renderToHTML(req, res, path, query);
@@ -37,7 +37,7 @@ function createParameterHandler(path) {
             return application.render(request, response, path, query);
         }
 
-        return nextCacheManager({
+        return cacheManager({
             req: request,
             res: response,
             path: path,
@@ -53,7 +53,7 @@ function requestHandler(request, response) {
         return application.render(request, response, path, query);
     }
 
-    return nextCacheManager({
+    return cacheManager({
         req: request,
         res: response,
         path: path,
