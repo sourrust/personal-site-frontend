@@ -1,10 +1,21 @@
-import App   from 'next/app';
-import Head  from 'next/head';
-import React from 'react';
+import App    from 'next/app';
+import Head   from 'next/head';
+import React  from 'react';
+import Router from 'next/router';
+
+import pageView from '../utility/pageView';
 
 import '../scss/index.scss';
 
 class BaseApplication extends App {
+    componentDidMount() {
+        Router.events.on('routeChangeStart', pageView);
+    }
+
+    componentWillUnmount() {
+        Router.events.off('routeChangeStart', pageView);
+    }
+
     render() {
         const { Component, pageProps } = this.props;
 
