@@ -21,13 +21,13 @@ function Summary() {
     );
 }
 
-function Information({ companies }) {
+function Information({ companies, highlights }) {
     return (
         <div className="information">
             <div className="container">
                 <div className="card">
                     <div className="card-content">
-                        <AboutMe />
+                        <AboutMe highlights={ highlights } />
                         <Companies companies={ companies } size={ 3 } />
                         <hr />
                         <Resume />
@@ -38,11 +38,11 @@ function Information({ companies }) {
     );
 }
 
-function Page({ companies }) {
+function Page(props) {
     return (
         <React.Fragment>
             <Summary />
-            <Information companies={ companies } />
+            <Information { ...props } />
             <Contact />
             <Footer />
         </React.Fragment>
@@ -50,14 +50,20 @@ function Page({ companies }) {
 }
 
 Page.getInitialProps = async function() {
-    const response = await fetchAPI('/companies', {
-        method: 'get',
-        params: {
-            _limit: 3
-        }
-    });
+    const responses = await Promise.all([
+        fetchAPI('/highlights'),
+        fetchAPI('/companies', {
+            method: 'get',
+            params: {
+                _limit: 3
+            }
+        })
+    ]);
 
-    return { companies: response.payload };
+    return {
+        highlights: responses[0].payload,
+        companies: responses[1].payload
+    };
 };
 
 export default Page;
