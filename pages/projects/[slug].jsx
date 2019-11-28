@@ -83,9 +83,9 @@ function Information({ company }) {
                         <p className="card-header-title">{ company.name }</p>
                     </div>
                     <div className="card-content">
-                        <div className="projects">
-                            { projectComponents  }
-                        </div>
+                        <article className="projects">
+                            { projectComponents }
+                        </article>
                         <hr />
                         <Resume />
                     </div>

@@ -103,7 +103,7 @@ function AboutMe({ highlights }) {
 
     return (
         <section id="about-me" className="section">
-            <div className={ contentClass.join(' ') }>
+            <article className={ contentClass.join(' ') }>
                 <p>
                     I'm Jeremy Hull, a software engineer raised in the open
                     source community. I love to build systems that solve
@@ -128,7 +128,7 @@ function AboutMe({ highlights }) {
                     the section below I'm going to expand on them a bit.
                 </p>
                 <Cards highlights={ highlights } />
-            </div>
+            </article>
             <button className="button is-fullwidth" onClick={ handleClick }>
                 { buttonContent }
             </button>
