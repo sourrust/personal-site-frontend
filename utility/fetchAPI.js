@@ -1,4 +1,4 @@
-import axios   from 'axios';
+import fetch   from 'isomorphic-unfetch';
 import isEmpty from 'lodash/isEmpty';
 
 import createCache from './cache';
@@ -14,10 +14,12 @@ async function fetchAPI(routeUrl, initialOptions) {
     }
 
     const response = isEmpty(options)
-        ? await axios.get(url)
-        : await axios(url, options);
+        ? await fetch(url)
+        : await fetch(url, options);
 
-    return cache.set(routeUrl, options, response.data);
+    const data = await response.json();
+
+    return cache.set(routeUrl, options, data);
 }
 
 export default fetchAPI;
