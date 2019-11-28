@@ -20,6 +20,9 @@ function createCache() {
     }
 
     function set(url, options, value) {
+        if (!isGetMethod(options)) {
+            return value;
+        }
 
         data.set(url, value);
 
