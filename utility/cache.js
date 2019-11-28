@@ -1,12 +1,7 @@
-import isEmpty       from 'lodash/isEmpty';
-import toQueryString from './toQueryString';
+import isEmpty from 'lodash/isEmpty';
 
 function isGetMethod(options) {
     return isEmpty(options) || options.method === 'get';
-}
-
-function createKey(url, options) {
-    return url + toQueryString(options.params);
 }
 
 function createCache() {
@@ -17,21 +12,19 @@ function createCache() {
             return false;
         }
 
-        const key = createKey(url, options);
-
-        return data.has(key);
+        return data.has(url);
     }
 
     function get(url, options) {
-        const key = createKey(url, options);
-
-        return data.get(key);
+        return data.get(url);
     }
 
     function set(url, options, value) {
-        const key = createKey(url, options);
+        if (!isGetMethod(options)) {
+            return value;
+        }
 
-        data.set(key, value);
+        data.set(url, value);
 
         return value;
     }
