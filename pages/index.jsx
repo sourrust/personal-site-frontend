@@ -52,12 +52,7 @@ function Page(props) {
 Page.getInitialProps = async function() {
     const responses = await Promise.all([
         fetchAPI('/highlights'),
-        fetchAPI('/companies', {
-            method: 'get',
-            params: {
-                _limit: 3
-            }
-        })
+        fetchAPI('/companies?_limit=3')
     ]);
 
     return {
