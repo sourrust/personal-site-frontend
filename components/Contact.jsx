@@ -1,5 +1,4 @@
 import React   from 'react';
-import bindAll from 'lodash/bindAll';
 import extend  from 'lodash/extend';
 import isEmpty from 'lodash/isEmpty';
 

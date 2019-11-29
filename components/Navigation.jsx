@@ -1,5 +1,4 @@
 import React    from 'react';
-import bindAll  from 'lodash/bindAll';
 import Link     from 'next/link';
 import Github   from './links/Github';
 import LinkedIn from './links/LinkedIn';
