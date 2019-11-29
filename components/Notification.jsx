@@ -1,20 +1,24 @@
 import React   from 'react';
-import compact from 'lodash/compact';
+import isEmpty from 'lodash/isEmpty';
 
 function Notification({
     className, content, isActive, handleDelete
 }) {
     const classes = [
         'notification',
-        isActive ? 'is-active' : null,
         className
     ];
 
-    const classNameString = compact(classes).join(' ');
-
     if (isActive) {
+        classes.push('is-active');
         setTimeout(handleDelete, 3500);
     }
+
+    if (!isEmpty(className)) {
+        classes.push(className);
+    }
+
+    const classNameString = classes.join(' ');
 
     return (
         <div className={ classNameString }>
