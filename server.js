@@ -9,9 +9,8 @@ const extend     = require('lodash/extend');
 
 const cacheableResponse = require('cacheable-response');
 
-const asMilliseconds  = require('./server/utility/asMilliseconds');
-const contactPost     = require('./server/contactPost');
-const servePublicFile = require('./server/servePublicFile');
+const asMilliseconds = require('./server/utility/asMilliseconds');
+const contactPost    = require('./server/contactPost');
 
 const port  = parseInt(process.env.PORT || '3000', 10);
 const isDev = process.env.NODE_ENV !== 'production';
@@ -77,11 +76,6 @@ async function startServer() {
     server.use(bodyParser.urlencoded({ extended: true }));
 
     server.post('/contact', contactPost);
-
-    server.get(
-        '/robots.txt',
-        servePublicFile('robots.txt', 'text/plain')
-    );
 
     server.get('/', requestHandler);
     server.get('/projects', requestHandler);
