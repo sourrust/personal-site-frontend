@@ -18,8 +18,8 @@ function handleAnchorTagReplace(node) {
     return node;
 }
 
-function markdownToReact(content) {
+function htmlToReact(content) {
     return htmlParser(content, { replace: handleAnchorTagReplace });
 }
 
-export default markdownToReact;
+export default htmlToReact;
