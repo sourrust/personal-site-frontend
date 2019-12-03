@@ -10,7 +10,7 @@ import Link       from '../../components/icons/Link';
 import Navigation from '../../components/Navigation';
 import Resume     from '../../components/Resume';
 
-import { fetchAPI, markdownToReact } from '../../utility';
+import { fetchAPI, htmlToReact } from '../../utility';
 
 function ProjectLink({ url }) {
     if (isEmpty(url)) {
@@ -49,7 +49,7 @@ function ProjectDescription({ description }) {
         return null;
     }
 
-    const content = markdownToReact(description);
+    const content = htmlToReact(description);
 
     return (
         <React.Fragment>
