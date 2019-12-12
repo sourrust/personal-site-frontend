@@ -2,10 +2,11 @@
 
 require('dotenv').config();
 
+const Celebrate  = require('celebrate');
 const bodyParser = require('body-parser');
 const express    = require('express');
-const next       = require('next');
 const extend     = require('lodash/extend');
+const next       = require('next');
 
 const cacheableResponse = require('cacheable-response');
 
@@ -75,13 +76,15 @@ async function startServer() {
     server.use(bodyParser.json());
     server.use(bodyParser.urlencoded({ extended: true }));
 
-    server.post('/contact', contactPost);
+    server.post('/contact', contactPost.validation, contactPost.handler);
 
     server.get('/', requestHandler);
     server.get('/projects', requestHandler);
     server.get('/projects/:slug', createParameterHandler('/projects/[slug]'));
 
     server.all('*', defaultHandler);
+
+    server.use(Celebrate.errors());
 
     server.listen(port, function(error) {
         if (error) {
