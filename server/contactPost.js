@@ -1,5 +1,6 @@
 'use strict';
 
+const Celebrate  = require('celebrate');
 const nodemailer = require('nodemailer');
 const isEmpty    = require('lodash/isEmpty');
 
@@ -82,4 +83,15 @@ async function handler(request, response) {
     });
 }
 
-module.exports = handler;
+const { Joi, Segments } = Celebrate;
+
+const validation = Celebrate.celebrate({
+    [Segments.BODY]: Joi.object().keys({
+        name: Joi.string().default('Anonymous'),
+        email: Joi.string().email().required(),
+        subject: Joi.string(),
+        message: Joi.string()
+    })
+})
+
+module.exports = { validation, handler };

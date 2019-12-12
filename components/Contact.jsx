@@ -182,6 +182,20 @@ function useNotification() {
     return [notification, handleShow, handleDelete];
 }
 
+function generateErrorMessage(errorFields) {
+    if (errorFields.length > 1) {
+        return `The fields ${errorFields.join(' and ')} are required or invalid`;
+    }
+
+    const field = errorFields[0];
+
+    if (field === 'email' && !isEmpty(field)) {
+        return `The ${field} field is invalid`;
+    }
+
+    return `The ${field} field is required`
+}
+
 function Contact() {
     const [hasError, setHasError] = React.useState(false);
 
@@ -194,22 +208,20 @@ function Contact() {
 
         const isInvalidEmail   = !isValidEmail(input.email);
         const isInvalidMessage = !isValidMessage(input.message);
-        const requiredFields   = [];
+        const errorFields      = [];
 
         if (isInvalidEmail) {
-            requiredFields.push('email');
+            errorFields.push('email');
         }
 
         if (isInvalidMessage) {
-            requiredFields.push('message');
+            errorFields.push('message');
         }
 
         if (isInvalidEmail || isInvalidMessage) {
             setHasError(true);
             handleShow(
-                requiredFields.length === 1
-                    ? `The field ${requiredFields[0]} is required`
-                    : `The fields ${requiredFields.join(' and ')} are required`
+                generateErrorMessage(errorFields)
             );
 
             return;
