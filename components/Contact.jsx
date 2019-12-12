@@ -4,11 +4,8 @@ import isEmpty from 'lodash/isEmpty';
 
 import Email        from './icons/Email';
 import Notification from './Notification';
-import trackerEvent from '../utility/trackerEvent';
 
-function isValidEmail(email) {
-    return !isEmpty(email);
-}
+import { isValidEmail, trackerEvent } from '../utility';
 
 function isValidMessage(message) {
     return !isEmpty(message);
