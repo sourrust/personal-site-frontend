@@ -21,6 +21,18 @@ function ModalStyle({ isActive }) {
     );
 }
 
+function MessageCounter({ message }) {
+    const className = isEmpty(message)
+        ? 'textarea-counter'
+        : 'textarea-counter is-active';
+
+    return (
+        <span className={ className }>
+          { message.length }
+        </span>
+    );
+}
+
 function ContactModal({
     isActive, notification, hasError, textData, handleClose,
     handleInput, handleSubmit, handleNotificationDelete
@@ -91,13 +103,14 @@ function ContactModal({
                                     value={ textData.subject }
                                     onChange={ handleInput } />
                             </div>
-                            <div className="field">
+                            <div className="field textarea-container">
                                 <textarea
                                     className={ classNameMessage }
                                     name="message"
                                     placeholder="Message"
                                     value={ textData.message }
                                     onChange={ handleInput } />
+                                <MessageCounter message={ textData.message } />
                             </div>
                             <div className="field">
                                 <button
