@@ -22,13 +22,15 @@ function ModalStyle({ isActive }) {
 }
 
 function MessageCounter({ message }) {
-    const className = isEmpty(message)
-        ? 'textarea-counter'
-        : 'textarea-counter is-active';
+    const classes = ['textarea-counter'];
+
+    if (!isEmpty(message)) {
+        classes.push('is-active');
+    }
 
     return (
-        <span className={ className }>
-          { message.length }
+        <span className={ classes.join(' ') }>
+            { message.length }
         </span>
     );
 }
@@ -37,7 +39,7 @@ function ContactModal({
     isActive, notification, hasError, textData, handleClose,
     handleInput, handleSubmit, handleNotificationDelete
 }) {
-    const className = isActive ? ' is-active' : '';
+    const classes = ['modal'];
 
     const isInvalidEmail   = !isValidEmail(textData.email);
     const isInvalidMessage = !isValidMessage(textData.message);
@@ -52,8 +54,12 @@ function ContactModal({
         ? 'textarea is-danger'
         : 'textarea';
 
+    if (isActive) {
+        classes.push('is-active');
+    }
+
     return (
-        <div className={ `modal${className}` }>
+        <div className={ classes.join(' ') }>
             <ModalStyle isActive={ isActive } />
             <Notification
                 className={ hasError ? 'is-danger' : null }

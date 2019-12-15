@@ -23,12 +23,14 @@ function useIndex(defaultIndex) {
 }
 
 function DetailItem({ item, isActive }) {
-    const className = isActive
-        ? 'subtitle-list-item is-active'
-        : 'subtitle-list-item';
+    const classes = ['subtitle-list-item'];
+
+    if (isActive) {
+        classes.push('is-active');
+    }
 
     return (
-        <li className={ className }>{ item }</li>
+        <li className={ classes.join(' ') }>{ item }</li>
     );
 }
 
