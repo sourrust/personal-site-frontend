@@ -13,6 +13,23 @@ gtag('js', new Date());
 gtag('config', '${analyticsId}');
 `;
 
+function GoogleAnalytics() {
+    const html = { __html: gTagText };
+    const gTag = `https://www.googletagmanager.com/gtag/js?id=${analyticsId}`;
+
+    if (process.env.NODE_ENV !== 'production') {
+        return null;
+    }
+
+    return (
+        <React.Fragment>
+            { /* Global site tag (gtag.js) - Google Analytics */ }
+            <script async src={ gTag } />
+            <script dangerouslySetInnerHTML={ html } />
+        </React.Fragment>
+    )
+}
+
 class BaseDocument extends Document {
     static async getInitialProps(context) {
         const initialProps = await Document.getInitialProps(context);
@@ -21,9 +38,6 @@ class BaseDocument extends Document {
     }
 
     render() {
-        const html = { __html: gTagText };
-        const gTag = `https://www.googletagmanager.com/gtag/js?id=${analyticsId}`;
-
         return (
             <Html>
                 <Head>
@@ -78,9 +92,7 @@ class BaseDocument extends Document {
                 <body>
                     <Main />
                     <NextScript />
-                    { /* Global site tag (gtag.js) - Google Analytics */ }
-                    <script async src={ gTag } />
-                    <script dangerouslySetInnerHTML={ html } />
+                    <GoogleAnalytics />
                 </body>
             </Html>
         );
