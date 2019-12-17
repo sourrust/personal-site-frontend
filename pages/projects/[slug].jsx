@@ -76,7 +76,7 @@ function Information({ company }) {
         <Project key={ project.slug } project={ project } />);
 
     return (
-        <div className="information">
+        <section className="information">
             <div className="container">
                 <div className="card">
                     <div className="card-header">
@@ -91,7 +91,7 @@ function Information({ company }) {
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     );
 }
 

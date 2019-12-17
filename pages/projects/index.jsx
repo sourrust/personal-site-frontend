@@ -9,7 +9,7 @@ import fetchAPI   from '../../utility/fetchAPI';
 
 function Information({ companies }) {
     return (
-        <div className="information">
+        <section className="information">
             <div className="container">
                 <div className="card">
                     <div className="card-header">
@@ -22,7 +22,7 @@ function Information({ companies }) {
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     );
 }
 

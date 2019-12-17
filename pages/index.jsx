@@ -23,7 +23,7 @@ function Summary() {
 
 function Information({ companies, highlights }) {
     return (
-        <div className="information">
+        <section className="information">
             <div className="container">
                 <div className="card">
                     <div className="card-content">
@@ -34,7 +34,7 @@ function Information({ companies, highlights }) {
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     );
 }
 
