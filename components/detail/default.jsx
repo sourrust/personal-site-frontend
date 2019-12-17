@@ -53,7 +53,7 @@ function DefaultDetail() {
     const [index, items, itemHandler] = useIndex(0);
 
     React.useEffect(() => {
-        const itemUpdateId = setInterval(itemHandler, 2500);
+        const itemUpdateId = setInterval(itemHandler, 3500);
 
         return () => clearInterval(itemUpdateId);
     });
