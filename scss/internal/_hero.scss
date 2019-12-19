@@ -26,13 +26,3 @@
         &.is-active { animation: slide-across 3.5s linear infinite }
     }
 }
-
-@keyframes slide-across {
-    0% { left: -100%; opacity: 0; }
-    20% { left: -20%; opacity: 0.25; }
-    25% { left: 0; opacity: 1; }
-    50% { left: 0; opacity: 1; }
-    75% { left: 0; opacity: 1; }
-    80% { left: 20%; opacity: 0.25; }
-    100% { left: 100%; opacity: 0; }
-}
