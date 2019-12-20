@@ -7,3 +7,12 @@ $secondary-color: darken($main-color, 2.5%);
     justify-content: center;
     flex-direction: column;
 }
+
+.button.is-black {
+    transition: background-color 0.35s;
+
+    &:hover {
+        background-color: lighten($black, 10%);
+        transition: background-color 0.35s;
+    }
+}

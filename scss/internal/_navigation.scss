@@ -6,12 +6,15 @@
 
 a.navbar-item {
     color: $white-ter;
+    transition: background-color 0.35s;
 
     svg { font-size: 1.5em }
 
     &:hover {
         background-color: $secondary-color;
         color: darken($white-ter, 5%);
+
+        transition: background-color 0.35s;
     }
 
     &:focus {
