@@ -90,7 +90,7 @@ const validation = Celebrate.celebrate({
         name: Joi.string().default('Anonymous'),
         email: Joi.string().email().required(),
         subject: Joi.string(),
-        message: Joi.string()
+        message: Joi.string().required()
     })
 })
 
