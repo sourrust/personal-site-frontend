@@ -1,4 +1,5 @@
 import React      from 'react';
+import isEmpty    from 'lodash/isEmpty';
 import AboutMe    from '../components/AboutMe';
 import Companies  from '../components/Companies';
 import Contact    from '../components/Contact';
@@ -49,10 +50,12 @@ function Page(props) {
     );
 }
 
-Page.getInitialProps = async function() {
+Page.getInitialProps = async function({ req }) {
+    const isServer  = !isEmpty(req);
+    const options   = { isServer };
     const responses = await Promise.all([
-        fetchAPI('/highlights'),
-        fetchAPI('/companies?_limit=3')
+        fetchAPI('/highlights', options),
+        fetchAPI('/companies?_limit=3', options)
     ]);
 
     return {

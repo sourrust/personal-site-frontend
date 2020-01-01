@@ -1,5 +1,6 @@
 import React      from 'react';
 import Head       from 'next/head';
+import isEmpty    from 'lodash/isEmpty';
 import Companies  from '../../components/Companies';
 import Contact    from '../../components/Contact';
 import Footer     from '../../components/Footer';
@@ -40,8 +41,9 @@ function Page({ companies }) {
     );
 }
 
-Page.getInitialProps = async function() {
-    const response = await fetchAPI('/companies');
+Page.getInitialProps = async function({ req }) {
+    const isServer = !isEmpty(req);
+    const response = await fetchAPI('/companies', { isServer });
 
     return { companies: response.payload };
 };
