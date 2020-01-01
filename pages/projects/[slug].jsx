@@ -113,11 +113,13 @@ function Page({ company, statusCode }) {
     );
 }
 
-Page.getInitialProps = async function({ query }) {
+Page.getInitialProps = async function({ req, query }) {
     let response;
 
     try {
-        response = await fetchAPI(`/companies/${query.slug}`);
+        const isServer = !isEmpty(req);
+
+        response = await fetchAPI(`/companies/${query.slug}`, { isServer });
     } catch (error) {
         response = { statusCode: error.response.status, payload: null };
     }
