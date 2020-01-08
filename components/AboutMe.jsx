@@ -112,14 +112,14 @@ function AboutMe({ highlights }) {
                     easier to reason about.
                 </p>
                 <p>
-                    As a child who grew up around computer and spend a good
+                    As a child who grew up around computers and spent a good
                     amount of my time playing videos game. The merge between
                     an engaging narrative and mechanical mastery lead me
                     down the path of investigating how these types of
-                    experiences are created. Eventually it lead me to pursue
-                    software development, in several of it's different
-                    fields, and not just videos games. However, my real
-                    passion is video games, and participating in a community
+                    experiences are created. Eventually, it leads me to
+                    pursue software development, in several of its different
+                    fields, and not just video games. However, my real
+                    passion is video games and participating in a community
                     that is important to me.
                 </p>
                 <p>
