@@ -267,7 +267,8 @@ function Contact() {
                 Contact
             </h2>
             <h4 className="subtitle">
-                Have something you want to talk to me about? Feel free to react out via
+                  Have something you want to talk to me about? A job
+                  opportunity? A new project? Feel free to react out via
             </h4>
             <button
                 type="button"
