@@ -8,6 +8,11 @@ $secondary-color: darken($main-color, 2.5%);
     flex-direction: column;
 }
 
+.subtitle-center {
+    max-width: 500px;
+    text-align: center;
+}
+
 .button.is-black {
     transition: background-color 0.35s;
 

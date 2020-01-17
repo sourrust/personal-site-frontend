@@ -1,3 +1,7 @@
 .resume-items {
     @extend .flex-center;
 }
+
+#resume p.subtitle {
+    @extend .subtitle-center;
+}

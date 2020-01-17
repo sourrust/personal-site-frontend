@@ -1,6 +1,10 @@
 #contact {
     @extend .flex-center;
 
+    h4.subtitle {
+        @extend .subtitle-center;
+    }
+
     .email {
         color: $black;
         font-size: $size-4;
