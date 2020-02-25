@@ -6,7 +6,7 @@ import trackerEvent from '../utility/trackerEvent';
 
 const baseUrl = '//splash.nyc3.cdn.digitaloceanspaces.com/personal-site/downloads/jeremy-hull-resume';
 const items = [
-    { name: 'microsoft_word_document', type: '.doc' },
+    { name: 'microsoft_word_document', type: '.docx' },
     { name: 'portable_document_format', type: '.pdf' },
     { name: 'plain_text', type: '.txt' }
 ];
