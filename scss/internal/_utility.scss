@@ -13,6 +13,10 @@ $secondary-color: darken($main-color, 2.5%);
     text-align: center;
 }
 
+.has-text-centered {
+    text-align: center;
+}
+
 .button.is-black {
     transition: background-color 0.35s;
 
