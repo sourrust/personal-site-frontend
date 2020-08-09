@@ -1,5 +1,4 @@
 import React      from 'react';
-import isEmpty    from 'lodash/isEmpty';
 import AboutMe    from '../components/AboutMe';
 import Companies  from '../components/Companies';
 import Contact    from '../components/Contact';
@@ -50,8 +49,8 @@ function Page(props) {
     );
 }
 
-Page.getInitialProps = async function({ req }) {
-    const isServer  = !isEmpty(req);
+export async function getStaticProps() {
+    const isServer  = true;
     const options   = { isServer };
     const responses = await Promise.all([
         fetchAPI('/highlights', options),
@@ -59,9 +58,11 @@ Page.getInitialProps = async function({ req }) {
     ]);
 
     return {
-        highlights: responses[0].payload,
-        companies: responses[1].payload
+        props: {
+            highlights: responses[0].payload,
+            companies: responses[1].payload
+        }
     };
-};
+}
 
 export default Page;

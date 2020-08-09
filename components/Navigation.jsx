@@ -67,15 +67,10 @@ function Navigation() {
                     </Link>
                 </div>
                 <div className="navbar-end">
-                    <div className="is-hidden-touch">
+                    <div className="social-links">
                         <Github className="navbar-item" />
                         <LinkedIn className="navbar-item" />
                         <Twitter className="navbar-item" />
-                    </div>
-                    <div className="is-hidden-desktop navbar-item">
-                        <Github className="item column is-2" />
-                        <LinkedIn className="item column is-2" />
-                        <Twitter className="item column is-2" />
                     </div>
                 </div>
             </div>

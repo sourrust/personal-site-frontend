@@ -1,7 +1,5 @@
 'use strict';
 
-const withSass = require('@zeit/next-sass');
-
 require('dotenv').config();
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
@@ -42,7 +40,7 @@ function getBaseUrl() {
         : getProductionBaseUrl();
 }
 
-module.exports = withSass({
+module.exports = {
     poweredByHeader: false,
     env: {
         GOOGLE_ANALYTICS_ID: process.env.GOOGLE_ANALYTICS_ID,
@@ -52,4 +50,4 @@ module.exports = withSass({
         includePaths: ['node_modules'],
         outputStyle: 'compressed'
     }
-});
+};

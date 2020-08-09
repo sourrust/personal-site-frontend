@@ -5,26 +5,11 @@ import Contact    from '../components/Contact';
 import Navigation from '../components/Navigation';
 import Footer     from '../components/Footer';
 
-const statusCodes = {
-    400: 'Bad Request',
-    404: 'No page was found',
-    500: 'Internal Server Error',
-    501: 'Not Implemented'
-};
-
-function getStatusCode(response) {
-    return (response && response.statusCode) || 500;
-}
-
-function BaseError({ statusCode }) {
+function Page() {
     return (
         <React.Fragment>
             <Head>
-                <title>
-                    { statusCode }
-                    {' '}
-| Jeremy Hull
-                </title>
+                <title>404 | Jeremy Hull</title>
             </Head>
             <section className="summary hero is-fullheight">
                 <div className="hero-header">
@@ -32,9 +17,9 @@ function BaseError({ statusCode }) {
                 </div>
                 <div className="hero-body">
                     <div className="container has-text-centered">
-                        <h1 className="title">{ statusCode }</h1>
+                        <h1 className="title">404</h1>
                         <h2 className="subtitle">
-                            { statusCodes[statusCode] }
+                            No page was found
                         </h2>
                     </div>
                 </div>
@@ -45,12 +30,4 @@ function BaseError({ statusCode }) {
     );
 }
 
-export async function getServerSideProps(context) {
-    const statusCode = getStatusCode(context.res);
-
-    return {
-        props: { statusCode }
-    };
-}
-
-export default BaseError;
+export default Page;

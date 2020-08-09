@@ -113,21 +113,23 @@ function Page({ company, statusCode }) {
     );
 }
 
-Page.getInitialProps = async function({ req, query }) {
+export async function getServerSideProps(context) {
     let response;
 
     try {
-        const isServer = !isEmpty(req);
+        const isServer = true;
 
-        response = await fetchAPI(`/companies/${query.slug}`, { isServer });
+        response = await fetchAPI(`/companies/${context.query.slug}`, { isServer });
     } catch (error) {
         response = { statusCode: error.response.status, payload: null };
     }
 
     return {
-        statusCode: response.statusCode,
-        company: response.payload
+        props: {
+            statusCode: response.statusCode,
+            company: response.payload || null
+        }
     };
-};
+}
 
 export default Page;
