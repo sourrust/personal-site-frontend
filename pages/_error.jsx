@@ -5,8 +5,6 @@ import Contact    from '../components/Contact';
 import Navigation from '../components/Navigation';
 import Footer     from '../components/Footer';
 
-import '../scss/index.scss';
-
 const statusCodes = {
     400: 'Bad Request',
     404: 'No page was found',
