@@ -12,12 +12,8 @@ const statusCodes = {
     501: 'Not Implemented'
 };
 
-function getStatusCode(response, error) {
-    if (response && response.statusCode) {
-        return response.statusCode;
-    }
-
-    return error ? error.statusCode : 404;
+function getStatusCode(response) {
+    return (response && response.statusCode) || 500;
 }
 
 function BaseError({ statusCode }) {
@@ -49,10 +45,12 @@ function BaseError({ statusCode }) {
     );
 }
 
-BaseError.getInitialProps = function getInitialProps({ res, err }) {
-    const statusCode = getStatusCode(res, err);
+export async function getServerSideProps(context) {
+    const statusCode = getStatusCode(context.res);
 
-    return { statusCode };
-};
+    return {
+        props: { statusCode }
+    };
+}
 
 export default BaseError;
