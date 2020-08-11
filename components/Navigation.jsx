@@ -1,5 +1,8 @@
-import React    from 'react';
-import Link     from 'next/link';
+import React from 'react';
+import Link  from 'next/link';
+
+import { useRouter } from 'next/router';
+
 import Github   from './links/Github';
 import LinkedIn from './links/LinkedIn';
 import Twitter  from './links/Twitter';
@@ -24,6 +27,8 @@ function getClasses(isActive, classString) {
 
 function Navigation() {
     const [isActive, handleClick] = useActive(false);
+
+    const path = useRouter().asPath;
 
     const burgerClasses = getClasses(isActive, 'navbar-burger');
     const menuClasses   = getClasses(isActive, 'navbar-menu');
@@ -55,12 +60,12 @@ function Navigation() {
                             Projects
                         </a>
                     </Link>
-                    <Link href="#contact">
+                    <Link href={`${path}#contact`}>
                         <a className="navbar-item">
                             Contact
                         </a>
                     </Link>
-                    <Link href="#resume">
+                    <Link href={`${path}#resume`}>
                         <a className="navbar-item">
                             Resume
                         </a>
