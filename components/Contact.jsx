@@ -2,7 +2,8 @@ import React   from 'react';
 import extend  from 'lodash/extend';
 import isEmpty from 'lodash/isEmpty';
 
-import Email        from './icons/Email';
+import { FaRegEnvelope as Email } from 'react-icons/fa';
+
 import Notification from './Notification';
 
 import { isValidEmail, trackerEvent } from '../utility';
@@ -275,7 +276,7 @@ function Contact() {
                 className="button is-medium is-black"
                 onClick={ handleToggle }>
                 <span className="icon">
-                    <Email />
+                    <Email className="react-icon" />
                 </span>
                 <span>Email</span>
             </button>

@@ -1,6 +1,8 @@
-import React   from 'react';
-import Link    from './Link';
-import Twitter from '../icons/Twitter';
+import React from 'react';
+
+import { FaTwitter as Twitter } from 'react-icons/fa';
+
+import Link from './Link';
 
 function TwitterLink({ className }) {
     return (
