@@ -1,6 +1,8 @@
-import React  from 'react';
-import Github from '../icons/Github';
-import Link   from './Link';
+import React from 'react';
+
+import { FaGithub as Github } from 'react-icons/fa';
+
+import Link from './Link';
 
 function GithubLink({ className }) {
     return (

@@ -1,7 +1,8 @@
 import React from 'react';
 import map   from 'lodash/map';
 
-import AngleDown    from './icons/AngleDown';
+import { FaAngleDown as AngleDown } from 'react-icons/fa';
+
 import trackerEvent from '../utility/trackerEvent';
 
 const baseUrl = '//splash.nyc3.cdn.digitaloceanspaces.com/personal-site/downloads/jeremy-hull-resume';
@@ -44,7 +45,7 @@ function Resume() {
                             aria-controls="dropdown-menu4">
                             <span>Resume</span>
                             <span className="icon is-small">
-                                <AngleDown />
+                                <AngleDown className="react-icon" />
                             </span>
                         </button>
                     </div>

@@ -2,6 +2,16 @@ import React from 'react';
 import Link  from 'next/link';
 import isNil from 'lodash/isNil';
 
+function getSubtitle(company) {
+    if (!isNil(company.subtitle)) {
+        return company.subtitle;
+    }
+
+    return company.project_count > 1
+        ? `${company.project_count} Projects`
+        : `${company.project_count} Project`;
+}
+
 function Company({ company, element, size }) {
     const hasNoSlug = isNil(company.slug);
 
@@ -9,7 +19,7 @@ function Company({ company, element, size }) {
     const asHref = hasNoSlug ? null : `/projects/${company.slug}`;
 
     const className = `company column is-${size}`;
-    const subtitle  = company.subtitle || `${company.project_count} Projects`;
+    const subtitle  = getSubtitle(company);
 
     return (
         <Link href={ href } as={ asHref }>

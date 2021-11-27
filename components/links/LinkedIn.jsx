@@ -1,6 +1,8 @@
 import React    from 'react';
-import Link     from './Link';
-import LinkedIn from '../icons/LinkedIn';
+
+import { FaLinkedin as LinkedIn } from 'react-icons/fa';
+
+import Link from './Link';
 
 function LinkedInLink({ className }) {
     return (

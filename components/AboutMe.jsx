@@ -2,7 +2,8 @@ import React  from 'react';
 import extend from 'lodash/extend';
 import map    from 'lodash/map';
 
-import AngleDown    from './icons/AngleDown';
+import { FaAngleDown as AngleDown } from 'react-icons/fa';
+
 import trackerEvent from '../utility/trackerEvent';
 
 function useShowMore(initialShowMore) {
