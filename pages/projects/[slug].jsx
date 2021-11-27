@@ -3,10 +3,12 @@ import Head       from 'next/head';
 import isEmpty    from 'lodash/isEmpty';
 import isNil      from 'lodash/isNil';
 import map        from 'lodash/map';
+
+import { FaLink as Link } from 'react-icons/fa';
+
 import Contact    from '../../components/Contact';
 import Error      from '../_error';
 import Footer     from '../../components/Footer';
-import Link       from '../../components/icons/Link';
 import Navigation from '../../components/Navigation';
 import Resume     from '../../components/Resume';
 
@@ -26,7 +28,7 @@ function ProjectLink({ url }) {
                 rel="noopener noreferrer"
                 title="Website"
                 href={ url }>
-                <Link />
+                <Link className="react-icon" />
             </a>
         </React.Fragment>
     );
