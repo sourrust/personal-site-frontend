@@ -12,7 +12,7 @@ function BaseApplication({ Component, pageProps }) {
         Router.events.on('routeChangeStart', pageView);
 
         return () => Router.events.off('routeChangeStart', pageView);
-    });
+    }, [Router]);
 
     return (
         <React.Fragment>

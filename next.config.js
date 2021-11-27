@@ -46,7 +46,7 @@ module.exports = {
         GOOGLE_ANALYTICS_ID: process.env.GOOGLE_ANALYTICS_ID,
         BASE_CMS_URL: getBaseUrl()
     },
-    sassLoaderOptions: {
+    sassOptions: {
         includePaths: ['node_modules'],
         outputStyle: 'compressed'
     }
