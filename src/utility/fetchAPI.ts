@@ -4,10 +4,19 @@ import isEmpty from 'lodash/isEmpty';
 
 import createCache from './cache';
 
+interface Options extends RequestInit {
+    isServer?: boolean;
+}
+
+interface BaseCMSUrl {
+    server: string;
+    client: string;
+}
+
 const cache = createCache();
 
-async function fetchAPI(routeUrl, initialOptions) {
-    const baseCMS = process.env.BASE_CMS_URL;
+async function fetchAPI(routeUrl: string, initialOptions: Options) {
+    const baseCMS = process.env.BASE_CMS_URL as unknown as BaseCMSUrl;
     const options = extend({}, initialOptions);
     const baseUrl = options.isServer ? baseCMS.server : baseCMS.client;
 

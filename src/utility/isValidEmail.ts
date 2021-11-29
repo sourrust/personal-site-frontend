@@ -1,17 +1,17 @@
 import every   from 'lodash/every';
 import isEmpty from 'lodash/isEmpty';
 
-function isValidLocal(local) {
+function isValidLocal(local: string) {
     const textEncoder = new TextEncoder();
 
     return !(isEmpty(local) || textEncoder.encode(local).length > 64);
 }
 
-function isValidDomainPart(value) {
-    return !(isEmpty(value) || value.length > 63)
+function isValidDomainPart(value: string) {
+    return !(isEmpty(value) || value.length > 63);
 }
 
-function isValidDomain(domain) {
+function isValidDomain(domain: string) {
     const parts = domain.split('.');
 
     if (parts.length < 2) {
@@ -21,7 +21,7 @@ function isValidDomain(domain) {
     return every(parts, isValidDomainPart);
 }
 
-function isValidEmail(emailStr) {
+function isValidEmail(emailStr: string) {
     if (isEmpty(emailStr) || emailStr.length > 254) {
         return false;
     }

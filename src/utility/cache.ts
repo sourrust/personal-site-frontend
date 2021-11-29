@@ -1,13 +1,17 @@
 import isEmpty from 'lodash/isEmpty';
 
-function isGetMethod(options) {
+interface Options {
+    method?: string;
+}
+
+function isGetMethod(options: Options) {
     return isEmpty(options) || options.method === 'get';
 }
 
 function createCache() {
-    const data = new Map();
+    const data = new Map<string, any>();
 
-    function has(url, options) {
+    function has(url: string, options: Options) {
         if (!isGetMethod(options)) {
             return false;
         }
@@ -15,11 +19,11 @@ function createCache() {
         return data.has(url);
     }
 
-    function get(url, options) {
+    function get(url: string) {
         return data.get(url);
     }
 
-    function set(url, options, value) {
+    function set(url: string, options: Options, value: any) {
         if (!isGetMethod(options)) {
             return value;
         }
