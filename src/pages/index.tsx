@@ -7,6 +7,13 @@ import Footer     from '../components/Footer';
 import Navigation from '../components/Navigation';
 import Resume     from '../components/Resume';
 import fetchAPI   from '../utility/fetchAPI';
+import Company    from '../types/Company';
+import Highlight  from '../types/Highlight';
+
+interface Props {
+    companies: Company[];
+    highlights: Highlight[];
+}
 
 function Summary() {
     return (
@@ -21,7 +28,7 @@ function Summary() {
     );
 }
 
-function Information({ companies, highlights }) {
+function Information({ companies, highlights }: Props) {
     return (
         <section className="information">
             <div className="container">
@@ -38,7 +45,7 @@ function Information({ companies, highlights }) {
     );
 }
 
-function Page(props) {
+function Page(props: Props) {
     return (
         <React.Fragment>
             <Summary />
@@ -54,14 +61,14 @@ export async function getStaticProps() {
     const options   = { isServer };
     const responses = await Promise.all([
         fetchAPI('/highlights', options),
-        fetchAPI('/companies?_limit=3', options)
+        fetchAPI('/companies?_limit=3', options),
     ]);
 
     return {
         props: {
             highlights: responses[0].payload,
-            companies: responses[1].payload
-        }
+            companies: responses[1].payload,
+        },
     };
 }
 

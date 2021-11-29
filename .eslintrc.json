@@ -34,8 +34,13 @@
             "SwitchCase": 1
         }],
         "@typescript-eslint/comma-dangle": ["error", {
+            "arrays": "always-multiline",
+            "enums": "always-multiline",
+            "exports": "always-multiline",
             "functions": "never",
-            "imports": "only-multiline"
+            "imports": "always-multiline",
+            "imports": "always-multiline",
+            "objects": "always-multiline"
         }],
         "import/extensions": ["error", {
             "ts": "never",

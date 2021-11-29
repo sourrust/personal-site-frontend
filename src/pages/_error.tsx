@@ -19,7 +19,7 @@ const statusCodes: StatusCodes = {
     400: 'Bad Request',
     404: 'No page was found',
     500: 'Internal Server Error',
-    501: 'Not Implemented'
+    501: 'Not Implemented',
 };
 
 function getStatusCode(response: ServerResponse) {
@@ -59,7 +59,7 @@ export async function getServerSideProps(context: Context): Promise<ServerResult
     const statusCode = getStatusCode(context.res);
 
     return {
-        props: { statusCode }
+        props: { statusCode },
     };
 }
 

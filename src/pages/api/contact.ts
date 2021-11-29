@@ -17,27 +17,27 @@ interface Message {
 function getTestConfiguration() {
     const authorization = {
         user: 'austin30@ethereal.email',
-        pass: 'Gb5tyjdyqmYV1bud4J'
+        pass: 'Gb5tyjdyqmYV1bud4J',
     };
 
     return {
         host: 'smtp.ethereal.email',
         port: 587,
-        auth: authorization
+        auth: authorization,
     };
 }
 
 function getConfiguration() {
     const authorization = {
         user: process.env.GMAIL_USERNAME,
-        pass: process.env.GMAIL_PASSWORD
+        pass: process.env.GMAIL_PASSWORD,
     };
 
     return {
         host: 'smtp.gmail.com',
         post: 465,
         secure: true,
-        auth: authorization
+        auth: authorization,
     };
 }
 
@@ -51,7 +51,7 @@ function getDefaultSubject(name: string, subject?: string) {
 
 function sendMessage(body: Message) {
     const {
-        name, email, subject, message
+        name, email, subject, message,
     } = body;
 
     const defaultName    = name || 'Anonymous';
@@ -68,7 +68,7 @@ function sendMessage(body: Message) {
         bcc: `"Jeremy Hull" <${process.env.GMAIL_USERNAME}>`,
         replyTo: email,
         subject: getDefaultSubject(defaultName, defaultSubject),
-        text: message
+        text: message,
     });
 }
 
@@ -79,8 +79,8 @@ const validation = Celebrate.celebrate({
         name: Joi.string().default('Anonymous'),
         email: Joi.string().email().required(),
         subject: Joi.string(),
-        message: Joi.string().required()
-    })
+        message: Joi.string().required(),
+    }),
 });
 
 function handleCelebrateMiddleware(request: NextApiRequest, response: NextApiResponse) {
@@ -93,7 +93,7 @@ async function handler(request: NextApiRequest, response: NextApiResponse) {
         response.status(404).json({
             statusCode: 404,
             error: http.STATUS_CODES[404],
-            message: 'Can not find handler for this method type'
+            message: 'Can not find handler for this method type',
         });
 
         return;
@@ -111,7 +111,7 @@ async function handler(request: NextApiRequest, response: NextApiResponse) {
         response.status(500).json({
             statusCode: 500,
             error: http.STATUS_CODES[500],
-            message: (error as Error).message || 'An unknown error has occured on the server'
+            message: (error as Error).message || 'An unknown error has occured on the server',
         });
 
         return;
@@ -119,7 +119,7 @@ async function handler(request: NextApiRequest, response: NextApiResponse) {
 
     response.json({
         statusCode: 200,
-        payload: payload
+        payload: payload,
     });
 }
 

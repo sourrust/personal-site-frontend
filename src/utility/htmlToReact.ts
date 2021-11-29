@@ -14,7 +14,7 @@ function handleAnchorTagReplace(node: DOMNode) {
     // eslint-disable-next-line no-param-reassign
     node.attribs = extend({}, node.attribs, {
         rel: 'noopener noreferrer',
-        target: '_blank'
+        target: '_blank',
     });
 
     return node;

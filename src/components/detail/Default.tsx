@@ -1,7 +1,17 @@
 import React from 'react';
 import map   from 'lodash/map';
 
-function useIndex(defaultIndex) {
+interface ItemProps {
+    isActive: boolean;
+    item: string;
+}
+
+interface ItemsProps {
+    itemIndex: number;
+    items: string[];
+}
+
+function useIndex(defaultIndex: number): [number, string[], () => void] {
     const [index, setIndex] = React.useState(defaultIndex);
 
     const items = [
@@ -9,7 +19,7 @@ function useIndex(defaultIndex) {
         'Open Source Advocate',
         'Game Mechanics Spelunker',
         'Systems Design Nerd',
-        'Recreational Critic'
+        'Recreational Critic',
     ];
 
     function itemHandler() {
@@ -22,7 +32,7 @@ function useIndex(defaultIndex) {
     return [index, items, itemHandler];
 }
 
-function DetailItem({ item, isActive }) {
+function DetailItem({ item, isActive }: ItemProps) {
     const classes = ['subtitle-list-item'];
 
     if (isActive) {
@@ -34,12 +44,13 @@ function DetailItem({ item, isActive }) {
     );
 }
 
-function DetailItems({ items, itemIndex }) {
+function DetailItems({ items, itemIndex }: ItemsProps) {
     const detailItems = map(items, (item, index) => (
         <DetailItem
             key={ item }
             isActive={ itemIndex === index }
-            item={ item } />
+            item={ item }
+        />
     ));
 
     return (
@@ -60,7 +71,11 @@ function DefaultDetail() {
 
     return (
         <div className="container has-text-centered">
-            <h1 className="title">Hey, I'm Jeremy.</h1>
+            <h1 className="title">
+                Hey, I
+                {'\''}
+                m Jeremy.
+            </h1>
             <h2 className="subtitle">
                 <DetailItems items={ items } itemIndex={ index } />
             </h2>
