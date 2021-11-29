@@ -4,17 +4,29 @@ import isEmpty    from 'lodash/isEmpty';
 import isNil      from 'lodash/isNil';
 import map        from 'lodash/map';
 
-import { FaLink as Link } from 'react-icons/fa';
+import { FaLink as LinkIcon } from 'react-icons/fa';
+import {
+    GetServerSidePropsContext as Context,
+    GetServerSidePropsResult as ServerResult,
+} from 'next';
 
+import Company    from '../../types/Company';
 import Contact    from '../../components/Contact';
 import Error      from '../_error';
 import Footer     from '../../components/Footer';
 import Navigation from '../../components/Navigation';
+import Project    from '../../types/Project';
 import Resume     from '../../components/Resume';
 
 import { fetchAPI, htmlToReact } from '../../utility';
 
-function ProjectLink({ url }) {
+type ServerProps = { [key: string]: any };
+
+interface ProjectLinkProps {
+    url?: string;
+}
+
+function ProjectLink({ url }: ProjectLinkProps) {
     if (isEmpty(url)) {
         return null;
     }
@@ -27,14 +39,23 @@ function ProjectLink({ url }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 title="Website"
-                href={ url }>
-                <Link className="react-icon" />
+                href={ url }
+            >
+                <LinkIcon className="react-icon" />
             </a>
         </React.Fragment>
     );
 }
 
-function ProjectSummary({ summary }) {
+ProjectLink.defaultProps = {
+    url: '',
+};
+
+interface ProjectSummaryProps {
+    summary?: string;
+}
+
+function ProjectSummary({ summary }: ProjectSummaryProps) {
     if (isEmpty(summary)) {
         return null;
     }
@@ -46,21 +67,31 @@ function ProjectSummary({ summary }) {
     );
 }
 
-function ProjectDescription({ description }) {
+ProjectSummary.defaultProps = {
+    summary: '',
+};
+
+interface ProjectDescriptionProps {
+    description?: string;
+}
+
+function ProjectDescription({ description }: ProjectDescriptionProps) {
     if (isNil(description)) {
         return null;
     }
 
-    const content = htmlToReact(description);
-
-    return (
-        <React.Fragment>
-            { content }
-        </React.Fragment>
-    )
+    return htmlToReact(description) as JSX.Element;
 }
 
-function Project({ project }) {
+ProjectDescription.defaultProps = {
+    description: '',
+};
+
+interface ProjectProps {
+    project: Project;
+}
+
+function ProjectComponent({ project }: ProjectProps) {
     return (
         <div id={ project.slug } className="content project">
             <h2>
@@ -73,9 +104,14 @@ function Project({ project }) {
     );
 }
 
-function Information({ company }) {
-    const projectComponents = map(company.projects, project =>
-        <Project key={ project.slug } project={ project } />);
+interface InformationProps {
+    company: Company;
+}
+
+function Information({ company }: InformationProps) {
+    const projectComponents = map(company.projects, (project) => (
+        <ProjectComponent key={ project.slug } project={ project } />
+    ));
 
     return (
         <section className="information">
@@ -97,7 +133,12 @@ function Information({ company }) {
     );
 }
 
-function Page({ company, statusCode }) {
+interface Props {
+    company?: Company;
+    statusCode: number;
+}
+
+function Page({ company, statusCode }: Props) {
     if (isNil(company)) {
         return <Error statusCode={ statusCode } />;
     }
@@ -105,7 +146,11 @@ function Page({ company, statusCode }) {
     return (
         <React.Fragment>
             <Head>
-                <title>{ company.name } | Jeremy Hull</title>
+                <title>
+                    { company.name }
+                    {' '}
+                    | Jeremy Hull
+                </title>
             </Head>
             <Navigation />
             <Information company={ company } />
@@ -115,22 +160,26 @@ function Page({ company, statusCode }) {
     );
 }
 
-export async function getServerSideProps(context) {
+Page.defaultProps = {
+    company: null,
+};
+
+export async function getServerSideProps(context: Context): Promise<ServerResult<ServerProps>> {
     let response;
 
     try {
         const isServer = true;
 
         response = await fetchAPI(`/companies/${context.query.slug}`, { isServer });
-    } catch (error) {
+    } catch (error: any) {
         response = { statusCode: error.response.status, payload: null };
     }
 
     return {
         props: {
             statusCode: response.statusCode,
-            company: response.payload || null
-        }
+            company: response.payload || null,
+        },
     };
 }
 

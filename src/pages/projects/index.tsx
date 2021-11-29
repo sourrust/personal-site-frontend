@@ -1,13 +1,18 @@
 import React      from 'react';
 import Head       from 'next/head';
 import Companies  from '../../components/Companies';
+import Company    from '../../types/Company';
 import Contact    from '../../components/Contact';
 import Footer     from '../../components/Footer';
 import Navigation from '../../components/Navigation';
 import Resume     from '../../components/Resume';
 import fetchAPI   from '../../utility/fetchAPI';
 
-function Information({ companies }) {
+interface Props {
+    companies: Company[];
+}
+
+function Information({ companies }: Props) {
     return (
         <section className="information">
             <div className="container">
@@ -26,7 +31,7 @@ function Information({ companies }) {
     );
 }
 
-function Page({ companies }) {
+function Page({ companies }: Props) {
     return (
         <React.Fragment>
             <Head>
@@ -45,7 +50,7 @@ export async function getStaticProps() {
     const response = await fetchAPI('/companies', { isServer });
 
     return {
-        props: { companies: response.payload }
+        props: { companies: response.payload },
     };
 }
 

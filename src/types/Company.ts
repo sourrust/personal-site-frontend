@@ -1,3 +1,6 @@
+// eslint-disable-next-line import/no-cycle
+import Project from './Project';
+
 interface Company {
     id?: number;
     name: string;
@@ -11,6 +14,7 @@ interface Company {
     updated_at?: string;
     project_count?: number;
     subtitle?: string;
+    projects?: Project[];
 }
 
 export default Company;

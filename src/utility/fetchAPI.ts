@@ -25,7 +25,7 @@ async function fetchAPI(routeUrl: string, initialOptions: Options) {
     delete options.isServer;
 
     if (cache.has(routeUrl, options)) {
-        return cache.get(routeUrl, options);
+        return cache.get(routeUrl);
     }
 
     const response = isEmpty(options)
