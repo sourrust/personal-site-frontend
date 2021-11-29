@@ -34,7 +34,8 @@
             "SwitchCase": 1
         }],
         "@typescript-eslint/comma-dangle": ["error", {
-            "functions": "never"
+            "functions": "never",
+            "imports": "only-multiline"
         }],
         "import/extensions": ["error", {
             "ts": "never",
@@ -53,6 +54,15 @@
                 "?": "before",
                 ":": "before"
             }
-        }]
+        }],
+        "react/function-component-definition": ["error", {
+            "namedComponents": "function-declaration",
+            "unnamedComponents": "arrow-function"
+        }],
+        "react/jsx-curly-spacing": ["error", "always"],
+        "react/jsx-fragments": ["error", "element"],
+        "react/jsx-indent": ["error", 4],
+        "react/jsx-indent-props": ["error", 4],
+        "react/jsx-props-no-spreading": "off"
     }
 }
