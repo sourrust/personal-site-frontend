@@ -1,0 +1,58 @@
+{
+    "root": true,
+    "env": {
+        "node": true,
+        "es2020": true
+    },
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "project": "./tsconfig.json"
+    },
+    "plugins": [
+        "@typescript-eslint"
+    ],
+    "extends": [
+        "airbnb",
+        "airbnb-typescript"
+    ],
+    "overrides": [
+        {
+            "files": ["./src/**.spec.ts"],
+            "env": {
+                "jest": true
+            }
+        },
+        {
+            "files": ["./src/utility/index.ts"],
+            "rules": {
+                "no-multi-spaces": "off"
+            }
+        }
+    ],
+    "rules": {
+        "@typescript-eslint/indent": ["error", 4, {
+            "SwitchCase": 1
+        }],
+        "@typescript-eslint/comma-dangle": ["error", {
+            "functions": "never"
+        }],
+        "import/extensions": ["error", {
+            "ts": "never",
+            "tsx": "never"
+        }],
+        "object-shorthand": ["error", "consistent-as-needed"],
+        "no-multi-spaces": ["error", {
+            "exceptions": {
+                "VariableDeclarator": true,
+                "ImportDeclaration": true,
+                "MemberExpression": true
+            }
+        }],
+        "operator-linebreak": ["error", "after", {
+            "overrides": {
+                "?": "before",
+                ":": "before"
+            }
+        }]
+    }
+}

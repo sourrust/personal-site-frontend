@@ -5,10 +5,11 @@
   "description": "My personal landing page",
   "main": "index.js",
   "scripts": {
-    "dev": "node server.js",
+    "dev": "next",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js",
-    "lint": "eslint **.js{,x}"
+    "start": "NODE_ENV=production next start",
+    "lint": "eslint src/",
+    "format": "eslint --fix src/"
   },
   "author": "Jeremy Hull <sourdurms@gmail.com>",
   "license": "BSD-3-Clause",
@@ -29,14 +30,24 @@
     "sass": "^1.43.5"
   },
   "devDependencies": {
-    "babel-eslint": "^10.0.3",
-    "eslint": "^5.16.0",
-    "eslint-cli": "^1.1.1",
-    "eslint-config-airbnb": "^17.1.1",
-    "eslint-config-react-app": "^3.0.0",
-    "eslint-plugin-flowtype": "^3.13.0",
+    "@types/body-parser": "^1.19.2",
+    "@types/express": "^4.17.13",
+    "@types/gtag.js": "^0.0.8",
+    "@types/lodash": "^4.14.177",
+    "@types/node": "^16.11.10",
+    "@types/nodemailer": "^6.4.4",
+    "@types/react": "^17.0.37",
+    "@types/react-dom": "^17.0.11",
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb": "^19.0.1",
+    "eslint-config-airbnb-typescript": "^16.0.0",
     "eslint-plugin-import": "^2.20.2",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-react": "^7.19.0"
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.2"
   }
 }
