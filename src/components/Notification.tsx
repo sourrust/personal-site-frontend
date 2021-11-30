@@ -1,12 +1,19 @@
 import React   from 'react';
 import isEmpty from 'lodash/isEmpty';
 
+interface Props {
+    className: string;
+    content: string;
+    handleDelete: () => void;
+    isActive: boolean;
+}
+
 function Notification({
-    className, content, isActive, handleDelete
-}) {
+    className, content, isActive, handleDelete,
+}: Props) {
     const classes = [
         'notification',
-        className
+        className,
     ];
 
     if (isActive) {
@@ -24,8 +31,10 @@ function Notification({
         <div className={ classNameString }>
             <button
                 type="button"
+                aria-label="delete"
                 onClick={ handleDelete }
-                className="delete" />
+                className="delete"
+            />
             { content }
         </div>
     );

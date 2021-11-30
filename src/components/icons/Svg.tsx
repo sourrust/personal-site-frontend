@@ -1,6 +1,12 @@
 import React from 'react';
 
-function Svg({ path, title, viewBox }) {
+interface Props {
+    path: string;
+    title: string;
+    viewBox: string;
+}
+
+function Svg({ path, title, viewBox }: Props) {
     const className = `svg-inline--fa fa-${title}`;
 
     return (
@@ -12,7 +18,8 @@ function Svg({ path, title, viewBox }) {
             data-fa-i2svg=""
             role="img"
             xmlns="http://www.w3.org/2000/svg"
-            viewBox={ viewBox }>
+            viewBox={ viewBox }
+        >
             <path fill="currentColor" d={ path } />
         </svg>
     );

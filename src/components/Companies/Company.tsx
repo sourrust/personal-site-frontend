@@ -2,7 +2,7 @@ import React from 'react';
 import Link  from 'next/link';
 import isNil from 'lodash/isNil';
 
-import Company from '../types/Company';
+import Company from '../../types/Company';
 
 interface Props {
     company: Company;

@@ -53,7 +53,8 @@ function OffMadisonAve() {
             aria-hidden
             role="img"
             xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 385 374">
+            viewBox="0 0 385 374"
+        >
             <g>
                 <path fill="currentColor" d={ path } />
                 <path fill="currentColor" d="M368.7 16.1H16.2v341.8h352.5V16.1zm-7.2 334.6h-338V23.3h338v327.4z" />

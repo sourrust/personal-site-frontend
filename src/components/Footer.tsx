@@ -28,7 +28,8 @@ function Footer() {
                 <a
                     href="https://m.do.co/c/13c6a25902b3"
                     rel="noopener noreferrer"
-                    target="_blank">
+                    target="_blank"
+                >
                     DigitalOcean
                 </a>
                 .

@@ -1,6 +1,6 @@
 import noop from 'lodash/noop';
 
-function trackerEvent(event_label: string, event_category: string, initialAction: string) {
+function trackerEvent(event_label: string, event_category: string, initialAction?: string) {
     const eventAction = initialAction || 'click';
 
     const tracker = window.gtag || noop;

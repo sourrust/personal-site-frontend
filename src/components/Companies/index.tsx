@@ -6,11 +6,11 @@ import {
     FaOsi as OSI,
 } from 'react-icons/fa';
 
-import Company           from '../types/Company';
+import Company           from '../../types/Company';
 import CompanyComponent  from './Company';
-import DesignWorksGaming from './icons/DesignWorksGaming';
-import OffMadisonAve     from './icons/OffMadisonAve';
-import Runbeck           from './icons/Runbeck';
+import DesignWorksGaming from '../icons/DesignWorksGaming';
+import OffMadisonAve     from '../icons/OffMadisonAve';
+import Runbeck           from '../icons/Runbeck';
 
 const icon: { [key: string]: JSX.Element } = {
     'design-works-gaming': <DesignWorksGaming />,

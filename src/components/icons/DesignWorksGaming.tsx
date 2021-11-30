@@ -28,7 +28,8 @@ function DesignWorksGaming() {
             aria-hidden
             role="img"
             xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 74 70">
+            viewBox="0 0 74 70"
+        >
             <path fill="#fff" d="M71.83 14.053L36.985 2 2.139 14.053v41.836l34.846 12.053 34.846-12.053z" />
             <path fill="currentColor" d={ path } />
         </svg>

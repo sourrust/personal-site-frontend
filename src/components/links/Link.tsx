@@ -1,12 +1,19 @@
 import React from 'react';
 
-function Link({ IconComponent, className, href }) {
+interface Props {
+    IconComponent: (props: any) => JSX.Element;
+    className: string;
+    href: string;
+}
+
+function Link({ IconComponent, className, href }: Props) {
     return (
         <a
             className={ className }
             href={ href }
             rel="noopener noreferrer"
-            target="_blank">
+            target="_blank"
+        >
             <IconComponent />
         </a>
     );

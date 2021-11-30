@@ -9,25 +9,27 @@ const baseUrl = '//splash.nyc3.cdn.digitaloceanspaces.com/personal-site/download
 const items = [
     { name: 'microsoft_word_document', type: '.docx' },
     { name: 'portable_document_format', type: '.pdf' },
-    { name: 'plain_text', type: '.txt' }
+    { name: 'plain_text', type: '.txt' },
 ];
 
-function handleClick(name) {
+function handleClick(name: string) {
     return () => trackerEvent(`resume_${name}`, 'download');
 }
 
 function Resume() {
-    const dropdownItems = map(items, item =>
+    const dropdownItems = map(items, (item) => (
         <a
             key={ item.type }
             className="dropdown-item"
             onClick={ handleClick(item.name) }
             href={ baseUrl + item.type }
             target="_blank"
-            download>
+            download
+            rel="noreferrer"
+        >
             { item.type }
         </a>
-    );
+    ));
 
     return (
         <section id="resume" className="section">
@@ -42,7 +44,8 @@ function Resume() {
                             type="button"
                             className="button is-medium is-outlined"
                             aria-haspopup
-                            aria-controls="dropdown-menu4">
+                            aria-controls="dropdown-menu4"
+                        >
                             <span>Resume</span>
                             <span className="icon is-small">
                                 <AngleDown className="react-icon" />

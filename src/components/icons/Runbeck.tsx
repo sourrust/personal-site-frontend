@@ -207,7 +207,8 @@ function Runbeck() {
             aria-hidden
             role="img"
             xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 186 164.785">
+            viewBox="0 0 186 164.785"
+        >
             <g>
                 <path fill="currentColor" opacity=".25" d="M0 30.72h134.064v134.064H0z" />
                 <path fill="currentColor" d={ path } />

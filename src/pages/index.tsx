@@ -2,7 +2,7 @@ import React      from 'react';
 import AboutMe    from '../components/AboutMe';
 import Companies  from '../components/Companies';
 import Contact    from '../components/Contact';
-import Detail     from '../components/detail';
+import Detail     from '../components/Detail';
 import Footer     from '../components/Footer';
 import Navigation from '../components/Navigation';
 import Resume     from '../components/Resume';

@@ -7,7 +7,7 @@ import Github   from './links/Github';
 import LinkedIn from './links/LinkedIn';
 import Twitter  from './links/Twitter';
 
-function useActive(defaultIsActive) {
+function useActive(defaultIsActive: boolean): [boolean, () => void] {
     const [isActive, setIsActive] = React.useState(defaultIsActive);
 
     function handleClick() {
@@ -17,7 +17,7 @@ function useActive(defaultIsActive) {
     return [isActive, handleClick];
 }
 
-function getClasses(isActive, classString) {
+function getClasses(isActive: boolean, classString: string) {
     if (isActive) {
         return `${classString} is-active`;
     }
@@ -36,37 +36,38 @@ function Navigation() {
     return (
         <nav className="navbar" aria-label="main navigation">
             <div className="navbar-brand">
-                <a
-                    role="button"
+                <button
+                    type="button"
                     className={ burgerClasses }
                     aria-label="menu"
                     aria-expanded="false"
                     tabIndex={ 0 }
-                    onClick={ handleClick }>
+                    onClick={ handleClick }
+                >
                     <span aria-hidden />
                     <span aria-hidden />
                     <span aria-hidden />
-                </a>
+                </button>
             </div>
             <div className={ menuClasses }>
                 <div className="navbar-start">
-                    <Link href="/">
-                        <a className="navbar-item">
+                    <Link href="/" passHref>
+                        <a href="/" className="navbar-item">
                             Home
                         </a>
                     </Link>
-                    <Link href="/projects">
-                        <a className="navbar-item">
+                    <Link href="/projects" passHref>
+                        <a href="/" className="navbar-item">
                             Projects
                         </a>
                     </Link>
-                    <Link href={`${path}#contact`}>
-                        <a className="navbar-item">
+                    <Link href={ `${path}#contact` } passHref>
+                        <a href="/" className="navbar-item">
                             Contact
                         </a>
                     </Link>
-                    <Link href={`${path}#resume`}>
-                        <a className="navbar-item">
+                    <Link href={ `${path}#resume` } passHref>
+                        <a href="/" className="navbar-item">
                             Resume
                         </a>
                     </Link>
