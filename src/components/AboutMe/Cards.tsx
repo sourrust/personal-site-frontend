@@ -1,6 +1,5 @@
-import React  from 'react';
-import extend from 'lodash/extend';
-import map    from 'lodash/map';
+import React from 'react';
+import map   from 'lodash/map';
 
 import Card      from './Card';
 import Highlight from '../../types/Highlight';
@@ -11,7 +10,7 @@ interface Props {
 }
 
 function Cards({ highlights }: Props) {
-    const tabValues = map(highlights, (highlight) => extend({}, highlight, { isActive: false }));
+    const tabValues = map(highlights, (highlight) => ({ ...highlight, isActive: false }));
 
     const [tabs, handleClick] = useTabs(tabValues);
 
