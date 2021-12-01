@@ -9,7 +9,10 @@ interface Props {
 }
 
 function Notification({
-    className, content, isActive, handleDelete,
+    className,
+    content,
+    isActive,
+    handleDelete,
 }: Props) {
     const classes = [
         'notification',

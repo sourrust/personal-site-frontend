@@ -1,4 +1,5 @@
 import Celebrate  from 'celebrate';
+import dotenv     from 'dotenv';
 import http       from 'http';
 import isEmpty    from 'lodash/isEmpty';
 import nodemailer from 'nodemailer';
@@ -6,6 +7,8 @@ import nodemailer from 'nodemailer';
 import { NextApiResponse, NextApiRequest } from 'next';
 
 import runApiMiddleware from '../../utility/runApiMiddleware';
+
+dotenv.config();
 
 interface Message {
     name: string;
@@ -33,10 +36,10 @@ function getConfiguration() {
         pass: process.env.GMAIL_PASSWORD,
     };
 
+    console.log(authorization);
+
     return {
-        host: 'smtp.gmail.com',
-        post: 465,
-        secure: true,
+        service: 'gmail',
         auth: authorization,
     };
 }
@@ -78,7 +81,7 @@ const validation = Celebrate.celebrate({
     [Segments.BODY]: Joi.object().keys({
         name: Joi.string().default('Anonymous'),
         email: Joi.string().email().required(),
-        subject: Joi.string(),
+        subject: Joi.string().allow(''),
         message: Joi.string().required(),
     }),
 });
@@ -90,13 +93,11 @@ function handleCelebrateMiddleware(request: NextApiRequest, response: NextApiRes
 
 async function handler(request: NextApiRequest, response: NextApiResponse) {
     if (request.method !== 'POST') {
-        response.status(404).json({
+        return response.status(404).json({
             statusCode: 404,
             error: http.STATUS_CODES[404],
             message: 'Can not find handler for this method type',
         });
-
-        return;
     }
 
     await handleCelebrateMiddleware(request, response);
@@ -108,16 +109,14 @@ async function handler(request: NextApiRequest, response: NextApiResponse) {
     } catch (error) {
         console.error(error);
 
-        response.status(500).json({
+        return response.status(500).json({
             statusCode: 500,
             error: http.STATUS_CODES[500],
             message: (error as Error).message || 'An unknown error has occured on the server',
         });
-
-        return;
     }
 
-    response.json({
+    return response.status(200).json({
         statusCode: 200,
         payload: payload,
     });
