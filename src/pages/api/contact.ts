@@ -36,8 +36,6 @@ function getConfiguration() {
         pass: process.env.GMAIL_PASSWORD,
     };
 
-    console.log(authorization);
-
     return {
         service: 'gmail',
         auth: authorization,
