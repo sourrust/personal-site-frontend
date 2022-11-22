@@ -1,4 +1,0 @@
-{
-    "extends": "../.eslint/browser.json",
-    "root": true
-}
