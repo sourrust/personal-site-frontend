@@ -14,7 +14,7 @@ interface StyleProps {
 interface Props {
     handleClose: () => void;
     handleInput: React.ChangeEventHandler;
-    handleNotificationDelete: () => void;
+    handleNotificationDelete: React.MouseEventHandler<HTMLButtonElement>;
     handleSubmit: React.FormEventHandler;
     hasError: boolean;
     isActive: boolean;

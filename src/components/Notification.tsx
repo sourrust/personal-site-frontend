@@ -4,7 +4,7 @@ import isEmpty from 'lodash/isEmpty';
 interface Props {
     className: string;
     content: string;
-    handleDelete: () => void;
+    handleDelete: React.MouseEventHandler<HTMLButtonElement>;
     isActive: boolean;
 }
 
