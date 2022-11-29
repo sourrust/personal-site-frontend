@@ -9,9 +9,7 @@ import {
 } from 'next';
 
 import Company    from '../../types/Company';
-import Contact    from '../../components/Contact';
 import Error      from '../_error';
-import Footer     from '../../components/Footer';
 import Navigation from '../../components/Navigation';
 import Project    from '../../components/Project';
 import Resume     from '../../components/Resume';
@@ -69,8 +67,6 @@ function Page({ company, statusCode }: Props) {
             </Head>
             <Navigation />
             <Information company={ company } />
-            <Contact />
-            <Footer />
         </React.Fragment>
     );
 }

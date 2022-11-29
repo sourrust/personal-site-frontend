@@ -8,9 +8,7 @@ import {
 import Head  from 'next/head';
 import React from 'react';
 
-import Contact    from '../components/Contact';
 import Navigation from '../components/Navigation';
-import Footer     from '../components/Footer';
 
 type ServerProps = { [key: string]: any };
 type StatusCodes = { [key: number]: string };
@@ -49,8 +47,6 @@ function BaseError({ statusCode }: Props) {
                     </div>
                 </div>
             </section>
-            <Contact />
-            <Footer />
         </React.Fragment>
     );
 }

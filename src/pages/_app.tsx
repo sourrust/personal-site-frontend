@@ -4,6 +4,8 @@ import Head   from 'next/head';
 import React  from 'react';
 import Router from 'next/router';
 
+import Contact  from '../components/Contact';
+import Footer   from '../components/Footer';
 import pageView from '../utility/pageView';
 
 import '../scss/index.scss';
@@ -25,6 +27,8 @@ function BaseApplication({ Component, pageProps }: Props) {
                 />
             </Head>
             <Component { ...pageProps } />
+            <Contact />
+            <Footer />
         </React.Fragment>
     );
 }

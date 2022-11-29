@@ -2,8 +2,6 @@ import React      from 'react';
 import Head       from 'next/head';
 import Companies  from '../../components/Companies';
 import Company    from '../../types/Company';
-import Contact    from '../../components/Contact';
-import Footer     from '../../components/Footer';
 import Navigation from '../../components/Navigation';
 import Resume     from '../../components/Resume';
 import fetchAPI   from '../../utility/fetchAPI';
@@ -39,8 +37,6 @@ function Page({ companies }: Props) {
             </Head>
             <Navigation />
             <Information companies={ companies } />
-            <Contact />
-            <Footer />
         </React.Fragment>
     );
 }

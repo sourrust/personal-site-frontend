@@ -1,9 +1,7 @@
 import Head  from 'next/head';
 import React from 'react';
 
-import Contact    from '../components/Contact';
 import Navigation from '../components/Navigation';
-import Footer     from '../components/Footer';
 
 function Page() {
     return (
@@ -24,8 +22,6 @@ function Page() {
                     </div>
                 </div>
             </section>
-            <Contact />
-            <Footer />
         </React.Fragment>
     );
 }
