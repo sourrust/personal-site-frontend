@@ -1,8 +1,6 @@
 import React      from 'react';
 import AboutMe    from '../components/AboutMe';
 import Companies  from '../components/Companies';
-import Detail     from '../components/Detail';
-import Navigation from '../components/Navigation';
 import Resume     from '../components/Resume';
 import fetchAPI   from '../utility/fetchAPI';
 import Company    from '../types/Company';
@@ -13,20 +11,7 @@ interface Props {
     highlights: Highlight[];
 }
 
-function Summary() {
-    return (
-        <section className="summary hero is-fullheight">
-            <div className="hero-header">
-                <Navigation />
-            </div>
-            <div className="hero-body">
-                <Detail />
-            </div>
-        </section>
-    );
-}
-
-function Information({ companies, highlights }: Props) {
+function Page({ companies, highlights }: Props) {
     return (
         <section className="information">
             <div className="container">
@@ -40,15 +25,6 @@ function Information({ companies, highlights }: Props) {
                 </div>
             </div>
         </section>
-    );
-}
-
-function Page(props: Props) {
-    return (
-        <React.Fragment>
-            <Summary />
-            <Information { ...props } />
-        </React.Fragment>
     );
 }
 

@@ -10,7 +10,6 @@ import {
 
 import Company    from '../../types/Company';
 import Error      from '../_error';
-import Navigation from '../../components/Navigation';
 import Project    from '../../components/Project';
 import Resume     from '../../components/Resume';
 import fetchAPI   from '../../utility/fetchAPI';
@@ -65,7 +64,6 @@ function Page({ company, statusCode }: Props) {
                     | Jeremy Hull
                 </title>
             </Head>
-            <Navigation />
             <Information company={ company } />
         </React.Fragment>
     );
