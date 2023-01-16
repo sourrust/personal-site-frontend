@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import TableDisplay   from './TableDisplay';
 import TableForm      from './Form';
 import TableModal     from './Modal';
+import TableTotal     from './TableTotal';
 import { StoreState } from '../../store';
 
 function getItems(state: StoreState) {
@@ -16,6 +17,7 @@ function WeightTable() {
 
     return (
         <React.Fragment>
+            <TableTotal items={ items } />
             <TableForm items={ items } />
             <TableDisplay items={ items } />
             <TableModal items={ items } />
