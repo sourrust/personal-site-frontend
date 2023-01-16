@@ -52,9 +52,7 @@ function Modal({
         <div className={ classes.join(' ') }>
             <ModalStyle isActive={ isActive } />
             <NotificationComponent
-                className={ hasError ? 'is-danger' : '' }
-                content={ notification.content }
-                isActive={ notification.visible }
+                notification={ notification }
                 handleDelete={ handleNotificationDelete }
             />
             <div className="modal-background" role="presentation" onClick={ handleClose } />
