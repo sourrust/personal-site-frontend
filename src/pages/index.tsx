@@ -29,8 +29,7 @@ function Page({ companies, highlights }: Props) {
 }
 
 export async function getStaticProps() {
-    const isServer  = true;
-    const options   = { isServer };
+    const options   = { isServer: true };
     const responses = await Promise.all([
         fetchAPI('/highlights', options),
         fetchAPI('/companies?_limit=3', options),

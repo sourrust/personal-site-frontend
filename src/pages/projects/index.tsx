@@ -34,8 +34,7 @@ function Page({ companies }: Props) {
 }
 
 export async function getStaticProps() {
-    const isServer = true;
-    const response = await fetchAPI('/companies', { isServer });
+    const response = await fetchAPI('/companies', { isServer: true });
 
     return {
         props: { companies: response.payload },

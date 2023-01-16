@@ -77,9 +77,7 @@ export async function getServerSideProps(context: Context): Promise<ServerResult
     let response;
 
     try {
-        const isServer = true;
-
-        response = await fetchAPI(`/companies/${context.query.slug}`, { isServer });
+        response = await fetchAPI(`/companies/${context.query.slug}`, { isServer: true });
     } catch (error: any) {
         response = { statusCode: error.response.status, payload: null };
     }
