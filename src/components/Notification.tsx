@@ -1,10 +1,10 @@
 import React from 'react';
 import isNil from 'lodash/isNil';
 
-import Notification from '../types/Notification';
+import INotification from '../types/Notification';
 
 interface Props {
-    notification: Notification;
+    notification: INotification;
     handleDelete: React.MouseEventHandler<HTMLButtonElement>;
 }
 
