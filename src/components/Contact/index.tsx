@@ -3,6 +3,8 @@ import isEmpty from 'lodash/isEmpty';
 
 import { FaRegEnvelope as Email } from 'react-icons/fa';
 
+import NotificationType from '../../types/NotificationType';
+
 import isValidEmail    from '../../utility/isValidEmail';
 import isValidMessage  from './isValidMessage';
 import useInput        from './useInput';
@@ -49,23 +51,26 @@ function Contact() {
         if (isInvalidEmail || isInvalidMessage) {
             setHasError(true);
             handleShow(
-                generateErrorMessage(errorFields)
+                generateErrorMessage(errorFields),
+                NotificationType.Danger
             );
 
             return;
         }
 
+        /*
         await fetch('/api/contact', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(input),
         })
             .then((response) => response.json());
+        */
 
         clearInput();
         setHasError(false);
 
-        handleShow('Message was sent!');
+        handleShow('Message was sent!', NotificationType.Success);
 
         setTimeout(handleHide, 4000);
     }, [input]);
