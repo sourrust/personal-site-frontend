@@ -23,14 +23,6 @@ function getModalState(state: StoreState) {
     return state.weightedTable.modal;
 }
 
-function isSubmitDisabled(weightTotal: number, state: ModalState) {
-    return (
-        weightTotal === 100 ||
-        isEmpty(state.name) ||
-        isEmpty(state.weight)
-    );
-}
-
 function useModal() {
     const dispatch   = useDispatch();
     const modalState = useSelector(getModalState);
@@ -121,7 +113,6 @@ function Modal({ items }: Props) {
 
     const classes     = ['modal'];
     const weightTotal = sumBy(items, 'weight');
-    const isDisabled  = isSubmitDisabled(weightTotal, modalState);
     const title       = getTitle(modalState.type);
 
     if (modalState.isActive) {
@@ -182,11 +173,7 @@ function Modal({ items }: Props) {
                                 />
                             </div>
                             <div className="field">
-                                <button
-                                    type="submit"
-                                    className="button is-black"
-                                    disabled={ isDisabled }
-                                >
+                                <button type="submit" className="button is-black">
                                     Submit
                                 </button>
                             </div>
