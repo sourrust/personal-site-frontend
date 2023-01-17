@@ -25,7 +25,9 @@ function TableTotal({ items }: Props) {
         <div id="weight-total" className={ classes.join(' ') }>
             <div className="columns">
                 <div className="column is-2">
-                    <strong>Weight Total</strong>: { weightTotal } 
+                    <strong>Weight Total</strong>
+                    { ': ' }
+                    { weightTotal }
                 </div>
                 <div className="column">
                     { message }

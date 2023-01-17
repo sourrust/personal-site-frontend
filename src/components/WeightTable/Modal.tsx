@@ -1,23 +1,16 @@
 import React     from 'react';
-import isEmpty   from 'lodash/isEmpty';
 import kebabCase from 'lodash/kebabCase';
-import sumBy     from 'lodash/sumBy';
 
 import { PayloadAction }            from '@reduxjs/toolkit';
 import { useSelector, useDispatch } from 'react-redux';
 
 import ItemWeight from '../../types/ItemWeight';
-import ModalState from '../../types/WeightedTableModal';
 import ModalStyle from '../ModalStyle';
 import ModalType  from '../../types/WeightedTableModalType';
 import itemsSlice from '../../slices/weighted-table/items';
 import modalSlice from '../../slices/weighted-table/modal';
 
 import { StoreState } from '../../store';
-
-interface Props {
-    items: ItemWeight[];
-}
 
 function getModalState(state: StoreState) {
     return state.weightedTable.modal;
@@ -103,7 +96,7 @@ function getTitle(type: ModalType) {
     }
 }
 
-function Modal({ items }: Props) {
+function Modal() {
     const {
         modalState,
         handleChange,
@@ -111,9 +104,8 @@ function Modal({ items }: Props) {
         handleClose,
     } = useModal();
 
-    const classes     = ['modal'];
-    const weightTotal = sumBy(items, 'weight');
-    const title       = getTitle(modalState.type);
+    const classes = ['modal'];
+    const title   = getTitle(modalState.type);
 
     if (modalState.isActive) {
         classes.push('is-active');

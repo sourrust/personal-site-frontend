@@ -3,7 +3,10 @@ import React from 'react';
 import Notification     from '../../types/Notification';
 import NotificationType from '../../types/NotificationType';
 
-function useNotification(): [Notification, (content: string, variant?: NotificationType) => void, () => void] {
+type ShowNotificationHandler =
+    (content: string, variant?: NotificationType) => void;
+
+function useNotification(): [Notification, ShowNotificationHandler, () => void] {
     const [notification, setNotification] = React.useState<Notification>({
         visible: false,
         content: '',
