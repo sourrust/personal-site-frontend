@@ -110,7 +110,7 @@ async function handler(request: NextApiRequest, response: NextApiResponse) {
         return response.status(500).json({
             statusCode: 500,
             error: http.STATUS_CODES[500],
-            message: (error as Error).message || 'An unknown error has occured on the server',
+            message: (error as Error).message || 'An unknown error has occurred on the server',
         });
     }
 

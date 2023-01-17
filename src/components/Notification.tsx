@@ -1,31 +1,23 @@
-import React   from 'react';
-import isEmpty from 'lodash/isEmpty';
+import React from 'react';
+import isNil from 'lodash/isNil';
+
+import INotification from '../types/Notification';
 
 interface Props {
-    className: string;
-    content: string;
+    notification: INotification;
     handleDelete: React.MouseEventHandler<HTMLButtonElement>;
-    isActive: boolean;
 }
 
-function Notification({
-    className,
-    content,
-    isActive,
-    handleDelete,
-}: Props) {
-    const classes = [
-        'notification',
-        className,
-    ];
+function Notification({ notification, handleDelete }: Props) {
+    const classes = ['notification'];
 
-    if (isActive) {
+    if (notification.visible) {
         classes.push('is-active');
         setTimeout(handleDelete, 3500);
     }
 
-    if (!isEmpty(className)) {
-        classes.push(className);
+    if (!isNil(notification.variant)) {
+        classes.push(notification.variant);
     }
 
     const classNameString = classes.join(' ');
@@ -38,7 +30,7 @@ function Notification({
                 onClick={ handleDelete }
                 className="delete"
             />
-            { content }
+            { notification.content }
         </div>
     );
 }

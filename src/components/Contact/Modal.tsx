@@ -2,14 +2,11 @@ import React from 'react';
 
 import ContactState          from '../../types/ContactState';
 import MessageCounter        from './MessageCounter';
+import ModalStyle            from '../ModalStyle';
 import Notification          from '../../types/Notification';
 import NotificationComponent from '../Notification';
 import isValidEmail          from '../../utility/isValidEmail';
 import isValidMessage        from './isValidMessage';
-
-interface StyleProps {
-    isActive: boolean;
-}
 
 interface Props {
     handleClose: () => void;
@@ -20,16 +17,6 @@ interface Props {
     isActive: boolean;
     notification: Notification;
     textData: ContactState;
-}
-
-function ModalStyle({ isActive }: StyleProps) {
-    if (!isActive) {
-        return null;
-    }
-
-    return (
-        <style jsx global>{'html { overflow-y: hidden }'}</style>
-    );
 }
 
 function Modal({
@@ -65,9 +52,7 @@ function Modal({
         <div className={ classes.join(' ') }>
             <ModalStyle isActive={ isActive } />
             <NotificationComponent
-                className={ hasError ? 'is-danger' : '' }
-                content={ notification.content }
-                isActive={ notification.visible }
+                notification={ notification }
                 handleDelete={ handleNotificationDelete }
             />
             <div className="modal-background" role="presentation" onClick={ handleClose } />

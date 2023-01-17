@@ -8,9 +8,7 @@ import {
 import Head  from 'next/head';
 import React from 'react';
 
-import Contact    from '../components/Contact';
-import Navigation from '../components/Navigation';
-import Footer     from '../components/Footer';
+import NavigationHero from '../components/NavigationHero';
 
 type ServerProps = { [key: string]: any };
 type StatusCodes = { [key: number]: string };
@@ -36,21 +34,14 @@ function BaseError({ statusCode }: Props) {
                     | Jeremy Hull
                 </title>
             </Head>
-            <section className="summary hero is-fullheight">
-                <div className="hero-header">
-                    <Navigation />
+            <NavigationHero>
+                <div className="container has-text-centered">
+                    <h1 className="title">{ statusCode }</h1>
+                    <h2 className="subtitle">
+                        { statusCodes[statusCode] }
+                    </h2>
                 </div>
-                <div className="hero-body">
-                    <div className="container has-text-centered">
-                        <h1 className="title">{ statusCode }</h1>
-                        <h2 className="subtitle">
-                            { statusCodes[statusCode] }
-                        </h2>
-                    </div>
-                </div>
-            </section>
-            <Contact />
-            <Footer />
+            </NavigationHero>
         </React.Fragment>
     );
 }

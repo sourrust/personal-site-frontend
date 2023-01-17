@@ -1,4 +1,5 @@
-.company {
+.company,
+.example {
     color: $text;
     text-align: center;
 
@@ -9,13 +10,13 @@
 
         transition: background-color 0.35s;
     }
-}
 
-.company.is-3 { font-size: 10rem }
+    &.is-3 { font-size: 10rem }
 
-.company.is-2 {
-    font-size: 5rem;
+    &.is-2 {
+        font-size: 5rem;
 
-    .title { font-size: 1.25rem }
-    .subtitle { font-size: 1rem }
+        .title { font-size: 1.25rem }
+        .subtitle { font-size: 1rem }
+    }
 }

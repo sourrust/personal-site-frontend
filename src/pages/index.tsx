@@ -1,10 +1,6 @@
 import React      from 'react';
 import AboutMe    from '../components/AboutMe';
 import Companies  from '../components/Companies';
-import Contact    from '../components/Contact';
-import Detail     from '../components/Detail';
-import Footer     from '../components/Footer';
-import Navigation from '../components/Navigation';
 import Resume     from '../components/Resume';
 import fetchAPI   from '../utility/fetchAPI';
 import Company    from '../types/Company';
@@ -15,20 +11,7 @@ interface Props {
     highlights: Highlight[];
 }
 
-function Summary() {
-    return (
-        <section className="summary hero is-fullheight">
-            <div className="hero-header">
-                <Navigation />
-            </div>
-            <div className="hero-body">
-                <Detail />
-            </div>
-        </section>
-    );
-}
-
-function Information({ companies, highlights }: Props) {
+function Page({ companies, highlights }: Props) {
     return (
         <section className="information">
             <div className="container">
@@ -45,20 +28,8 @@ function Information({ companies, highlights }: Props) {
     );
 }
 
-function Page(props: Props) {
-    return (
-        <React.Fragment>
-            <Summary />
-            <Information { ...props } />
-            <Contact />
-            <Footer />
-        </React.Fragment>
-    );
-}
-
 export async function getStaticProps() {
-    const isServer  = true;
-    const options   = { isServer };
+    const options   = { isServer: true };
     const responses = await Promise.all([
         fetchAPI('/highlights', options),
         fetchAPI('/companies?_limit=3', options),

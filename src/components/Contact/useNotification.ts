@@ -1,17 +1,18 @@
 import React from 'react';
 
-import Notification from '../../types/Notification';
+import Notification     from '../../types/Notification';
+import NotificationType from '../../types/NotificationType';
 
-function useNotification(): [Notification, (content: string) => void, () => void] {
+function useNotification(): [Notification, (content: string, variant?: NotificationType) => void, () => void] {
     const [notification, setNotification] = React.useState<Notification>({
         visible: false,
         content: '',
     });
 
-    function handleShow(content: string) {
+    function handleShow(content: string, variant?: NotificationType) {
         const visible = true;
 
-        setNotification({ content, visible });
+        setNotification({ content, variant, visible });
     }
 
     function handleDelete() {

@@ -61,6 +61,11 @@ function Navigation() {
                             Projects
                         </a>
                     </Link>
+                    <Link href="/examples" passHref>
+                        <a href="/" className="navbar-item">
+                            Examples
+                        </a>
+                    </Link>
                     <Link href={ `${path}#contact` } passHref>
                         <a href="/" className="navbar-item">
                             Contact
