@@ -20,7 +20,7 @@ function WeightTable() {
             <TableTotal items={ items } />
             <TableForm items={ items } />
             <TableDisplay items={ items } />
-            <TableModal items={ items } />
+            <TableModal />
         </React.Fragment>
     );
 }
