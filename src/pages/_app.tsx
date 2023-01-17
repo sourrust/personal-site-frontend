@@ -3,7 +3,7 @@ import { AppProps as Props } from 'next/app';
 import Head  from 'next/head';
 import React from 'react';
 
-import Router, { Router as RouterClass} from 'next/router';
+import Router, { Router as RouterClass } from 'next/router';
 
 import Contact        from '../components/Contact';
 import Detail         from '../components/Detail';
